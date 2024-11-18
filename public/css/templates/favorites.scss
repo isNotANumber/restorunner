@@ -1,0 +1,90 @@
+@use '../global/mixins.scss' as *;
+
+.favorites {
+  padding: 0 15px 93px;
+  border-bottom: 2px solid rgba(#dedede, 0.5);
+
+  &--empty {
+    width: 100%;
+    padding: 0 0px 93px 38px;
+  }
+}
+
+.favorites__title {
+  margin-top: 0;
+  margin-bottom: 49px;
+  font-size: 32px;
+  line-height: 1.1429;
+  font-weight: 700;
+  font-style: oblique;
+  text-align: center;
+}
+
+.favorites__list {
+  @include list-reset;
+}
+
+.favorites__locations-items {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 52px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.favorites__locations {
+  display: flex;
+  width: 244px;
+  margin-right: 20px;
+}
+
+.favorites__card {
+  display: flex;
+  align-items: flex-start;
+  width: 421px;
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.favorites__image-wrapper {
+  min-width: 150px;
+  margin-right: 16px;
+  margin-bottom: 0;
+}
+
+.favorites__card-info {
+  padding-top: 1px;
+}
+
+.favorites__status-wrapper {
+  width: 420px;
+  margin-top: 16.7vh;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 94px;
+  text-align: center;
+  background-image: url("../img/ico-saved.svg");
+  background-size: 60px 73px;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.favorites__status {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 32px;
+  line-height: 1.1875;
+}
+
+.favorites__status-description {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}

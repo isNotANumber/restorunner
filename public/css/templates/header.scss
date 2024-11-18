@@ -1,0 +1,95 @@
+@use '../global/variables.scss' as *;
+@use '../global/mixins.scss' as *;
+
+.header__wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 19px 16px 0;
+}
+
+.header__left {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  margin-right: auto;
+}
+
+.header__logo-link {
+  margin-bottom: 15px;
+
+  &:not(.header__logo-link--active):hover,
+  &:not(.header__logo-link--active):focus {
+    opacity: 0.5;
+  }
+}
+
+.header__nav {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  margin-top: 11px;
+  margin-left: 30px;
+}
+
+.header__nav-list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.header__nav-item {
+  display: flex;
+  min-height: 25px;
+  margin-bottom: 15px;
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.header__nav-link {
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.2143;
+  transition: text-shadow 0.3s;
+
+  &:hover,
+  &:focus {
+    text-shadow: 0.5px 0 0,
+                 -0.5px 0 0;
+  }
+}
+
+.header__avatar-wrapper {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.header__login {
+  padding-top: 2px;
+  padding-right: 8px;
+}
+
+.header__user-name,
+.header__signout {
+  padding-top: 2px;
+}
+
+.header__favorite-count {
+  display: inline-block;
+  min-width: 40px;
+  height: 25px;
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  color: #fff;
+  background: $main;
+  border-radius: 15px;
+}

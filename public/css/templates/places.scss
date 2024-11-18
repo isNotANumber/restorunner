@@ -1,0 +1,79 @@
+@use '../global/mixins.scss' as *;
+
+.places__found {
+  display: block;
+  margin-bottom: 22px;
+  padding-left: 2px;
+  font-size: 24px;
+  line-height: 1.167;
+  font-weight: 700;
+  font-style: oblique;
+}
+
+.places__sorting {
+  position: relative;
+  margin-bottom: 33px;
+  padding-left: 5px;
+}
+
+.places__sorting-arrow {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  right: 0;
+  fill: #0d0d0d;
+}
+
+.places__options {
+  @include list-reset;
+  background-color: white;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+
+  &--custom {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 52px;
+    z-index: 1;
+    display: none;
+  }
+
+  &--opened {
+    display: block;
+  }
+}
+
+.places__option {
+  min-width: 170px;
+  padding: 14px 16px 10px;
+  font-size: 14px;
+  line-height: 1.2143;
+  transition: background 0.3s;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &--active {
+    background-color: #f2f2f2;
+  }
+
+  &:selected {
+    background-color: #f2f2f2;
+  }
+}
+
+.places__sorting-caption {
+  font-size: 12px;
+  line-height: 1.167;
+  font-weight: 700;
+}
+
+.places__sorting-type {
+  position: relative;
+  display: inline-block;
+  padding-right: 12px;
+  font-size: 12px;
+  line-height: 1.167;
+  cursor: pointer;
+}

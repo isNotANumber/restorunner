@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 48px;
+  padding-bottom: 52px;
+}
+
+.header__logo-link {
+  &:not(.header__logo-link--active):hover,
+  &:not(.header__logo-link--active):focus {
+    opacity: 0.5;
+  }
+}

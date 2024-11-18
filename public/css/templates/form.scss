@@ -1,0 +1,92 @@
+@use '../global/variables.scss' as *;
+
+.form__rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.form__rating-label {
+  display: block;
+  width: 37px;
+  height: 33px;
+  margin-right: 4px;
+  cursor: pointer;
+
+  &:first-child {
+    margin-right: 0;
+  }
+}
+
+
+.form__rating-label:hover .form__star-image,
+.form__rating-label:hover ~ .form__rating-label .form__star-image,
+.form__rating-input:focus ~ .form__rating-label .form__star-image,
+.form__rating-input:checked ~ .form__rating-label .form__star-image {
+  fill: $orange;
+}
+
+.form__star-image {
+  fill: $main;
+  transition: fill 0.3s;
+}
+
+.form__textarea {
+  font-size: 16px;
+  line-height: 1.1875;
+  color: $text;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 1.1875;
+    color: #9b9b9b;
+  }
+}
+
+.form__textarea::-ms-input-placeholder {
+  font-size: 16px;
+  line-height: 1.1875;
+  color: #9b9b9b;
+}
+
+.form__input {
+  padding: 15px 14px 13px;
+  font-size: 16px;
+  line-height: 1.1875;
+  color: $text;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 1.1875;
+    color: #818181;
+  }
+}
+
+.form__input::-ms-input-placeholder {
+  font-size: 16px;
+  line-height: 1.1875;
+  color: #818181;
+}
+
+.form__submit {
+  padding: 16px 20px 13px;
+  color: white;
+  background-color: $main;
+  border-radius: 3px;
+
+  &:hover,
+  &:focus {
+    background-color: $text;
+  }
+
+  &:disabled {
+    background-color: $main;
+  }
+}

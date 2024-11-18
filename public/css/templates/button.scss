@@ -1,0 +1,13 @@
+@use '../global/mixins.scss' as *;
+
+.button {
+  @include button-reset;
+  display: inline-block;
+  font: inherit;
+  text-align: center;
+  word-break: break-word;
+  word-wrap: wrap;
+  overflow-wrap: break-word;
+  transition: color 0.3s, background-color 0.3s;
+  outline: none;
+}

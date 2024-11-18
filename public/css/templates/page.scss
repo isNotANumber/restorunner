@@ -1,0 +1,74 @@
+@use '../global/variables.scss' as *;
+
+.page {
+  background-color: white;
+
+  &--login {
+    display: flex;
+    flex-direction: column;
+    width: 1144px;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: top left, right top;
+    height: 100vh;
+    background-size: auto, auto 100%;
+    background-repeat: no-repeat, no-repeat;
+    overflow: hidden;
+
+    @media (max-height: 720px) {
+      background-size: auto, auto 715px;
+    }
+  }
+
+  &--favorites-empty {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  &--main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  &--gray {
+    background-color: $bg;
+  }
+}
+
+.page__main {
+  &--offer {
+    padding-bottom: 129px;
+  }
+
+  &--login {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &--favorites {
+    padding-top: 11px;
+  }
+
+  &--favorites-empty {
+    display: flex;
+    flex-grow: 1;
+
+    .page__favorites-container {
+      display: flex;
+    }
+  }
+
+  &--index {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+}
+
+.page__login-container {
+  display: flex;
+  justify-content: center;
+}

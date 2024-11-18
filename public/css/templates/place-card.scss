@@ -1,0 +1,143 @@
+@use '../global/variables.scss' as *;
+
+
+.place-card {
+  position: relative;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.place-card__image-wrapper {
+  margin-bottom: 9px;
+}
+
+.place-card__image {
+  display: block;
+  border-radius: 4px;
+}
+
+.place-card__info {
+  flex-grow: 1;
+}
+
+.place-card__price-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.place-card__price {
+  margin-right: 20px;
+}
+
+.favorites__card {
+  .place-card__bookmark-button {
+    margin-top: 0;
+    transform: skew(10deg);
+  }
+}
+
+.place-card__bookmark-button {
+  flex-shrink: 0;
+  width: 18px;
+  height: 19px;
+  margin-top: 2px;
+
+  &:hover .place-card__bookmark-icon,
+  &:focus .place-card__bookmark-icon {
+    stroke: $main;
+  }
+
+  &--active .place-card__bookmark-icon {
+    stroke: $main;
+    fill: $main;
+  }
+}
+
+.place-card__bookmark-icon {
+  fill: none;
+  stroke: #979797;
+  stroke-width: 2;
+  transition: fill 0.3s, stroke 0.3s
+}
+
+.place-card__price-value {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.place-card__price-text {
+  font-size: 12px;
+  line-height: 1.1667;
+}
+
+.place-card__rating {
+  margin-bottom: 6px;
+}
+
+.place-card__stars {
+  width: 73px;
+  height: 12px;
+
+  &::before {
+    width: 73px;
+    background-size: 73px 12px;
+  }
+
+  span {
+    width: 0%;
+
+    &::before {
+      width: 73px;
+      background-size: 73px 12px;
+    }
+  }
+}
+
+.place-card__name {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 20px;
+  line-height: 1.223;
+  font-weight: 700;
+  font-style: oblique;
+
+  a {
+    display: inline-block;
+  }
+
+  a:hover,
+  a:focus {
+    opacity: 0.7;
+  }
+}
+
+.place-card__type {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 1.1667;
+}
+
+.place-card__mark {
+  position: absolute;
+  top: -5px;
+  left: -3px;
+  padding: 5px 15px 5px 9px;
+  font-size: 12px;
+  line-height: 1.1667;
+  font-weight: 700;
+  color: white;
+  background-color: $main;
+  transform: skew(-10deg);
+  border-radius: 3px;
+
+  span {
+    display: block;
+    transform: skew(10deg);
+  }
+}
