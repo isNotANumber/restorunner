@@ -1,8 +1,12 @@
 import { Helmet } from 'react-helmet-async';
+import Map from '../../components/map/Map';
 import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
 import { Offers } from '../../mocks/types';
+import { City } from '../../types/types';
+import { CITY } from '../../const';
 
 type MainPageProps = {
+  city: City;
   offers: Offers;
 };
 
@@ -94,7 +98,10 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
             </section>
             <div className='rest-places__right-section'>
               <section className='rest-places__map map'>
-                <img src='./img/placeholders/map512x777.png' alt='map' />
+                <Map
+                  city={CITY}
+                  offers={offers}
+                ></Map>
               </section>
             </div>
           </div>

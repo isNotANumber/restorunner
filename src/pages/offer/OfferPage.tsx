@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { OFFERS } from '../../mocks/offers';
+import { Offer } from '../../mocks/types';
+import { OFFERS } from '../../mocks/offers'
+import Map from '../../components/map/Map';
+import { CITY } from '../../const';
 
 function OfferPage(): JSX.Element {
   const { id } = useParams();
-  const offer = OFFERS.find((item) => item.id === id);
+  const offer: Offer = OFFERS.find((item) => item.id === id) as Offer;
 
   return (
     <div className='page'>
@@ -139,7 +142,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map'>
-            <img src='./img/placeholders/map1000x500.png' alt='map' />
+            <Map city={CITY} offers={[offer]}></Map>
           </section>
         </section>
       </main>

@@ -10,3 +10,14 @@ export enum AuthorizstionStatus {
   NoAuth = 'NO_AUTH',
   unknown = 'UNKNOWN',
 }
+
+export const URL_MARKER_DEFAULT = '/img/icons/pin.svg';
+
+export const URL_MARKER_CURRENT = '/img/icons/main-pin.svg';
+
+export const CITY = {
+  title: 'Yekaterinburg',
+  lat: 56.83789,
+  lng: 60.60677,
+  zoom: 13,
+};
