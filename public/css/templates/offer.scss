@@ -126,6 +126,11 @@
     stroke: $main;
     fill: $main;
   }
+
+  &--active .offer__bookmark-icon {
+    stroke: $main;
+    fill: $main;
+  }
 }
 
 .offer__bookmark-icon {
