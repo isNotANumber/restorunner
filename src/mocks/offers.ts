@@ -1,6 +1,4 @@
-import { Offers } from './types';
-
-export const OFFERS: Offers = [
+export const OFFERS = [
   {
     id: '1',
     title: 'Gourmet Italian Restaurant',
@@ -21,6 +19,11 @@ export const OFFERS: Offers = [
       'https://example.com/images/restaurant2.jpg',
       'https://example.com/images/restaurant3.jpg',
     ],
+    contacts: {
+      phone: '+1-212-555-1234',
+      email: 'info@gourmetitalian.com',
+      telegram: '@gourmetitalian',
+    },
   },
   {
     id: '2',
@@ -43,6 +46,11 @@ export const OFFERS: Offers = [
       'https://example.com/images/cafe2.jpg',
       'https://example.com/images/cafe3.jpg',
     ],
+    contacts: {
+      phone: '+1-323-555-5678',
+      email: 'contact@downtowncafe.com',
+      telegram: '@downtowncafe',
+    },
   },
   {
     id: '3',
@@ -64,6 +72,11 @@ export const OFFERS: Offers = [
       'https://example.com/images/bar2.jpg',
       'https://example.com/images/bar3.jpg',
     ],
+    contacts: {
+      phone: '+44-20-7946-0958',
+      email: 'info@rooftopbar.com',
+      telegram: '@rooftopbar',
+    },
   },
   {
     id: '4',
@@ -85,5 +98,10 @@ export const OFFERS: Offers = [
       'https://example.com/images/fastfood2.jpg',
       'https://example.com/images/fastfood3.jpg',
     ],
+    contacts: {
+      phone: '+1-415-555-7890',
+      email: 'support@quickbites.com',
+      telegram: '@quickbites',
+    },
   },
 ];

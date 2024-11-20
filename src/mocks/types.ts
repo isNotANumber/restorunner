@@ -14,6 +14,11 @@ export type Offer = {
   description: string;
   goods: string[];
   images: string[];
+  contacts: {
+    phone: string;
+    email: string;
+    telegram: string;
+  };
 };
 
 export type Offers = Offer[];
