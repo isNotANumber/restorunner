@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizstionStatus } from '../../const';
 import MainPage from '../../pages/main/MainPage';
 import LoginPage from '../../pages/login/LoginPage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import OfferPage from '../../pages/offer/OfferPage';
 import NotFoundPage from '../../pages/not-found/NotFoundPage';
+import PrivateRoute from '../private-route/PrivateRoute';
 
 function App() {
   return (
@@ -23,7 +24,11 @@ function App() {
           ></Route>
           <Route
             path={AppRoute.Favorites}
-            element={<FavoritesPage></FavoritesPage>}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizstionStatus.NoAuth}>
+                <FavoritesPage></FavoritesPage>
+              </PrivateRoute>
+            }
           ></Route>
           <Route
             path={AppRoute.Offer}
