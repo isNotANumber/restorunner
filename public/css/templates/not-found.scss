@@ -1,0 +1,36 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 520px;
+  padding-top: 19.6vh;
+}
+
+.not-found__title {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  margin-bottom: 28px;
+  font-size: 32px;
+  line-height: 1.1875;
+  font-weight: 700;
+  font-style: oblique;
+}
+
+.not-found__message {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.not-found__link {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #5b7086;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-shadow: 0.5px 0 0, -0.5px 0 0;
+  }
+}

@@ -5,6 +5,7 @@ import MainPage from '../../pages/main/MainPage';
 import LoginPage from '../../pages/login/LoginPage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import OfferPage from '../../pages/offer/OfferPage';
+import NotFoundPage from '../../pages/not-found/NotFoundPage';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             path={AppRoute.Offer}
             element={<OfferPage></OfferPage>}
           ></Route>
-          <Route path='*' element={<MainPage></MainPage>}></Route>
+          <Route path='*' element={<NotFoundPage></NotFoundPage>}></Route>
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

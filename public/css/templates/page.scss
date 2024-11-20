@@ -32,6 +32,15 @@
     height: 100vh;
   }
 
+  &--not-found {
+    display: flex;
+    flex-direction: column;
+    width: 1144px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+  }
+
   &--gray {
     background-color: $bg;
   }
@@ -43,6 +52,11 @@
   }
 
   &--login {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &--not-found {
     display: flex;
     flex-grow: 1;
   }
@@ -69,6 +83,11 @@
 }
 
 .page__login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page__not-found-container {
   display: flex;
   justify-content: center;
 }
