@@ -1,7 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/PlaceCard';
+import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
+import { Offers } from '../../mocks/types';
 
-function FavoritesPage(): JSX.Element {
+type FavoritesPageProps = {
+  offers: Offers;
+};
+
+function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
+  const offersTypes = Array.from(new Set(offers.map((offer) => offer.type)));
+
   return (
     <div className='page'>
       <Helmet>
@@ -51,31 +58,23 @@ function FavoritesPage(): JSX.Element {
           <section className='favorites'>
             <h1 className='favorites__title'>Saved listing</h1>
             <ul className='favorites__list'>
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <a className='locations__item-link' href='#'>
-                      <span>Restaurants</span>
-                    </a>
+              {offersTypes.map((type) => (
+                <li key={type} className='favorites__locations-items'>
+                  <div className='favorites__locations locations locations--current'>
+                    <div className='locations__item'>
+                      <a className='locations__item-link' href='#'>
+                        <span>{type}</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className='favorites__places'>
-                  <PlaceCard page='favorites'></PlaceCard>
-                </div>
-              </li>
-
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <a className='locations__item-link' href='#'>
-                      <span>Bars</span>
-                    </a>
-                  </div>
-                </div>
-                <div className='favorites__places'>
-                  <PlaceCard page='favorites'></PlaceCard>
-                </div>
-              </li>
+                  <PlaceCardsList
+                    page='favorites'
+                    offers={offers.filter(
+                      (offer) => offer.type === type && offer.isFavorite
+                    )}
+                  ></PlaceCardsList>
+                </li>
+              ))}
             </ul>
           </section>
         </div>

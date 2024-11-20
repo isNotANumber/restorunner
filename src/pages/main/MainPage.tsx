@@ -1,7 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/PlaceCard';
+import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
+import { Offers } from '../../mocks/types';
 
-function MainPage(): JSX.Element {
+type MainPageProps = {
+  offers: Offers;
+};
+
+function MainPage({ offers }: MainPageProps): JSX.Element {
   return (
     <div className='page page--gray page--main'>
       <Helmet>
@@ -82,9 +87,10 @@ function MainPage(): JSX.Element {
             <section className='rest-places__places places'>
               <h2 className='visually-hidden'>Places</h2>
               <b className='places__found'>52 Restaurants found</b>
-              <div className='rest-places__places-list places__list tabs__content'>
-                <PlaceCard page='rest-places'></PlaceCard>
-              </div>
+              <PlaceCardsList
+                page='rest-places'
+                offers={offers}
+              ></PlaceCardsList>
             </section>
             <div className='rest-places__right-section'>
               <section className='rest-places__map map'>

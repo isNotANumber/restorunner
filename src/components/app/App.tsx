@@ -7,8 +7,13 @@ import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import OfferPage from '../../pages/offer/OfferPage';
 import NotFoundPage from '../../pages/not-found/NotFoundPage';
 import PrivateRoute from '../private-route/PrivateRoute';
+import { Offers } from '../../mocks/types';
 
-function App() {
+type AppProps = {
+  offers: Offers;
+};
+
+function App({ offers }: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter
@@ -17,7 +22,10 @@ function App() {
         }}
       >
         <Routes>
-          <Route path={AppRoute.Root} element={<MainPage></MainPage>}></Route>
+          <Route
+            path={AppRoute.Root}
+            element={<MainPage offers={offers}></MainPage>}
+          ></Route>
           <Route
             path={AppRoute.Login}
             element={<LoginPage></LoginPage>}
@@ -25,8 +33,8 @@ function App() {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizstionStatus.NoAuth}>
-                <FavoritesPage></FavoritesPage>
+              <PrivateRoute authorizationStatus={AuthorizstionStatus.Auth}>
+                <FavoritesPage offers={offers}></FavoritesPage>
               </PrivateRoute>
             }
           ></Route>
