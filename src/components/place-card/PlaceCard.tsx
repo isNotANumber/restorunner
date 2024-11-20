@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Offer } from '../../mocks/types';
 
 type PlaceCardProps = {
@@ -26,7 +27,7 @@ function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
       </div>
       <div className='place-card__info'>
         <h2 className='place-card__name'>
-          <a href='#'>{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <div className={`place-card__price-wrapper`}>
           <div className='place-card__price'>
