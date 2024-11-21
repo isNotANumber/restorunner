@@ -8,12 +8,21 @@ import OfferPage from '../../pages/offer/OfferPage';
 import NotFoundPage from '../../pages/not-found/NotFoundPage';
 import PrivateRoute from '../private-route/PrivateRoute';
 import { Offers } from '../../mocks/types';
+import { store } from '../../store';
+import { useEffect } from 'react';
+import { loadOffers } from '../../features/catalog/catalogSlice';
 
 type AppProps = {
   offers: Offers;
 };
 
 function App({ offers }: AppProps) {
+  const dispatch = store.dispatch;
+
+  useEffect(() => {
+    dispatch(loadOffers());
+  }, []);
+
   return (
     <HelmetProvider>
       <BrowserRouter
