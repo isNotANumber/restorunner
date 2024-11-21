@@ -1,4 +1,5 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from 'react-helmet-async';
+import Header from '../../components/header/Header';
 
 function LoginPage(): JSX.Element {
   return (
@@ -6,23 +7,8 @@ function LoginPage(): JSX.Element {
       <Helmet>
         <title>Restorunner: login</title>
       </Helmet>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <div className='header__left'>
-              <a className='header__logo-link' href='main.html'>
-                <img
-                  className='header__logo'
-                  src='img/icons/logo.svg'
-                  alt='Restorunner logo'
-                  width='171'
-                  height='41'
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+
+      <Header></Header>
 
       <main className='page__main page__main--login'>
         <div className='page__login-container container'>
