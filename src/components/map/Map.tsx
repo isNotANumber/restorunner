@@ -9,6 +9,7 @@ import { Offers } from '../../mocks/types';
 type MapProps = {
   city: City;
   offers: Offers;
+  selectedPointId: string;
 };
 
 const defaultCustomIcon = new Icon({
@@ -17,13 +18,13 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-// const currentCustomIcon = new Icon({
-//   iconUrl: URL_MARKER_CURRENT,
-//   iconSize: [40, 40],
-//   iconAnchor: [20, 40],
-// });
+const currentCustomIcon = new Icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
-function Map({ city, offers }: MapProps): JSX.Element {
+function Map({ city, offers, selectedPointId }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -38,10 +39,9 @@ function Map({ city, offers }: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            // selectedPoint !== undefined && point.title === selectedPoint.title
-            //   ? currentCustomIcon
-            //   :
-            defaultCustomIcon
+            selectedPointId !== undefined && offer.id === selectedPointId
+              ? currentCustomIcon
+              : defaultCustomIcon
           )
           .addTo(markerLayer);
       });
@@ -50,7 +50,7 @@ function Map({ city, offers }: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers]); // [map, points, selectedPoint]);
+  }, [map, offers, selectedPointId]); // [map, points, selectedPoint]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }

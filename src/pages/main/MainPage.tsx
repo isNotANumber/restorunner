@@ -4,6 +4,7 @@ import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
 import { Offers } from '../../mocks/types';
 import { City } from '../../types/types';
 import { CITY } from '../../const';
+import { useState } from 'react';
 
 type MainPageProps = {
   city: City;
@@ -11,6 +12,12 @@ type MainPageProps = {
 };
 
 function MainPage({ offers }: MainPageProps): JSX.Element {
+  const [activeCardId, setActiveCardId] = useState(offers[0].id);
+
+  const handleCardMouseEnter = (id: string) => {
+    setActiveCardId(id);
+  };
+
   return (
     <div className='page page--gray page--main'>
       <Helmet>
@@ -92,6 +99,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
               <h2 className='visually-hidden'>Places</h2>
               <b className='places__found'>52 Restaurants found</b>
               <PlaceCardsList
+                onCardMouseEnter={handleCardMouseEnter}
                 page='rest-places'
                 offers={offers}
               ></PlaceCardsList>
@@ -101,6 +109,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
                 <Map
                   city={CITY}
                   offers={offers}
+                  selectedPointId={activeCardId}
                 ></Map>
               </section>
             </div>

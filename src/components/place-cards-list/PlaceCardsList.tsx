@@ -4,9 +4,14 @@ import PlaceCard from '../place-card/PlaceCard';
 type PlaceCardsListProps = {
   offers: Offers;
   page: 'rest-places' | 'favorites';
+  onCardMouseEnter: (id: string) => void;
 };
 
-function PlaceCardsList({ offers, page }: PlaceCardsListProps): JSX.Element {
+function PlaceCardsList({
+  offers,
+  page,
+  onCardMouseEnter,
+}: PlaceCardsListProps): JSX.Element {
   return (
     <div
       className={
@@ -16,7 +21,12 @@ function PlaceCardsList({ offers, page }: PlaceCardsListProps): JSX.Element {
       }
     >
       {offers.map((offer: Offer) => (
-        <PlaceCard key={offer.id} offer={offer} page={page} />
+        <PlaceCard
+          onCardMouseEnter={onCardMouseEnter}
+          key={offer.id}
+          offer={offer}
+          page={page}
+        />
       ))}
     </div>
   );

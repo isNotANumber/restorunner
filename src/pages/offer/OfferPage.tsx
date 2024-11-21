@@ -142,7 +142,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map'>
-            <Map city={CITY} offers={[offer]}></Map>
+            <Map selectedPointId={offer.id} city={CITY} offers={[offer]}></Map>
           </section>
         </section>
       </main>
