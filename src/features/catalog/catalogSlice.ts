@@ -9,7 +9,7 @@ type CatalogState = {
 };
 
 const initialState: CatalogState = {
-  currentPlaceType: 'Restaurants',
+  currentPlaceType: 'Restaurant',
   offers: [],
 };
 
@@ -27,8 +27,8 @@ const catalogSlice = createSlice({
 });
 
 export const loadOffers = () => (dispatch: AppDispatch) => {
-    dispatch(setOffers(OFFERS));
-}
+  dispatch(setOffers(OFFERS));
+};
 
 export const { setCurrentPlaceType, setOffers } = catalogSlice.actions;
 

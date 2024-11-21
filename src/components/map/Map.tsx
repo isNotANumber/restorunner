@@ -4,11 +4,10 @@ import useMap from '../../hooks/use-map';
 import { City } from '../../types/types';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import 'leaflet/dist/leaflet.css';
-import { Offers } from '../../mocks/types';
+import { useAppSelector } from '../../store/hooks';
 
 type MapProps = {
   city: City;
-  offers: Offers;
   selectedPointId: string;
 };
 
@@ -24,14 +23,21 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map({ city, offers, selectedPointId }: MapProps): JSX.Element {
+function Map({ city, selectedPointId }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+
+  const currentPlaceType = useAppSelector(
+    (state) => state.catalog.currentPlaceType
+  );
+  const filteredOffers = useAppSelector((state) =>
+    state.catalog.offers.filter((offer) => offer.type === currentPlaceType)
+  );
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      offers.forEach((offer) => {
+      filteredOffers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
@@ -50,7 +56,7 @@ function Map({ city, offers, selectedPointId }: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, selectedPointId]); // [map, points, selectedPoint]);
+  }, [map, filteredOffers, selectedPointId]); // [map, points, selectedPoint]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }

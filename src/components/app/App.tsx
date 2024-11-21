@@ -7,16 +7,11 @@ import FavoritesPage from '../../pages/favorites/FavoritesPage';
 import OfferPage from '../../pages/offer/OfferPage';
 import NotFoundPage from '../../pages/not-found/NotFoundPage';
 import PrivateRoute from '../private-route/PrivateRoute';
-import { Offers } from '../../mocks/types';
 import { store } from '../../store';
 import { useEffect } from 'react';
 import { loadOffers } from '../../features/catalog/catalogSlice';
 
-type AppProps = {
-  offers: Offers;
-};
-
-function App({ offers }: AppProps) {
+function App() {
   const dispatch = store.dispatch;
 
   useEffect(() => {
@@ -31,10 +26,7 @@ function App({ offers }: AppProps) {
         }}
       >
         <Routes>
-          <Route
-            path={AppRoute.Root}
-            element={<MainPage offers={offers}></MainPage>}
-          ></Route>
+          <Route path={AppRoute.Root} element={<MainPage></MainPage>}></Route>
           <Route
             path={AppRoute.Login}
             element={<LoginPage></LoginPage>}
@@ -43,7 +35,7 @@ function App({ offers }: AppProps) {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizstionStatus.Auth}>
-                <FavoritesPage offers={offers}></FavoritesPage>
+                <FavoritesPage></FavoritesPage>
               </PrivateRoute>
             }
           ></Route>

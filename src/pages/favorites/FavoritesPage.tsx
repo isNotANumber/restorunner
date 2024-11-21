@@ -1,15 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
-import { Offers } from '../../mocks/types';
 import Header from '../../components/header/Header';
 import HeaderNav from '../../components/header-nav/HeaderNav';
+import { PLACES_TYPES } from '../../const';
+import { useAppSelector } from '../../store/hooks';
 
-type FavoritesPageProps = {
-  offers: Offers;
-};
-
-function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
-  const offersTypes = Array.from(new Set(offers.map((offer) => offer.type)));
+function FavoritesPage(): JSX.Element {
+  const getFilteredOffers = (type: string) =>
+    useAppSelector((state) =>
+      state.catalog.offers.filter(
+        (offer) => offer.type === type && offer.isFavorite
+      )
+    );
 
   return (
     <div className='page'>
@@ -26,20 +28,18 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
           <section className='favorites'>
             <h1 className='favorites__title'>Saved listing</h1>
             <ul className='favorites__list'>
-              {offersTypes.map((type) => (
-                <li key={type} className='favorites__locations-items'>
-                  <div className='favorites__locations locations locations--current'>
-                    <div className='locations__item'>
-                      <a className='locations__item-link' href='#'>
+              {PLACES_TYPES.map((type) => (
+                <li key={type} className='favorites__places-types-items'>
+                  <div className='favorites__places-types places-types places-types--current'>
+                    <div className='places-types__item'>
+                      <a className='places-types__item-link' href='#'>
                         <span>{type}</span>
                       </a>
                     </div>
                   </div>
                   <PlaceCardsList
                     page='favorites'
-                    offers={offers.filter(
-                      (offer) => offer.type === type && offer.isFavorite
-                    )}
+                    offers={getFilteredOffers(type)}
                   ></PlaceCardsList>
                 </li>
               ))}

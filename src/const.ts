@@ -21,3 +21,5 @@ export const CITY = {
   lng: 60.60677,
   zoom: 13,
 };
+
+export const PLACES_TYPES = ['Restaurant', 'Cafe', 'Bar', 'FastFood'];
