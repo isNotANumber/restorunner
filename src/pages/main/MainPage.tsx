@@ -67,7 +67,7 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
               <h2 className='visually-hidden'>Places</h2>
               <b className='places__found'>52 Restaurants found</b>
               <PlaceCardsList
-                onCardMouseEnter={handleCardMouseEnter}
+                onMouseEnter={handleCardMouseEnter}
                 page='rest-places'
                 offers={offers}
               ></PlaceCardsList>

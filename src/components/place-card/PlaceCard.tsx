@@ -4,18 +4,18 @@ import { Offer } from '../../mocks/types';
 type PlaceCardProps = {
   offer: Offer;
   page: 'rest-places' | 'favorites';
-  onCardMouseEnter: (id: string) => void;
+  onMouseEnter?: (id: string) => void;
 };
 
 function PlaceCard({
   offer,
   page,
-  onCardMouseEnter,
+  onMouseEnter,
 }: PlaceCardProps): JSX.Element {
   return (
     <article
       className={`${page}__card place-card`}
-      onMouseEnter={() => onCardMouseEnter(offer.id)}
+      onMouseEnter={() => onMouseEnter ? onMouseEnter(offer.id) : null}
     >
       {offer.isPopular ? (
         <div className='place-card__mark'>
