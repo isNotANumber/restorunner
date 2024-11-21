@@ -7,6 +7,7 @@ import { CITY } from '../../const';
 import { useState } from 'react';
 import Header from '../../components/header/Header';
 import HeaderNav from '../../components/header-nav/HeaderNav';
+import PlacesTypes from '../../components/places-types/PlacesTypes';
 
 type MainPageProps = {
   city: City;
@@ -32,35 +33,9 @@ function MainPage({ offers }: MainPageProps): JSX.Element {
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Places</h1>
-        <div className='tabs'>
-          <section className='locations container'>
-            <ul className='locations__list tabs__list'>
-              <li className='locations__item'>
-                <a
-                  className='locations__item-link tabs__item tabs__item--active'
-                  href='#'
-                >
-                  <span>Restaurants</span>
-                </a>
-              </li>
-              <li className='locations__item'>
-                <a className='locations__item-link tabs__item' href='#'>
-                  <span>Bars</span>
-                </a>
-              </li>
-              <li className='locations__item'>
-                <a className='locations__item-link tabs__item' href='#'>
-                  <span>Cafes</span>
-                </a>
-              </li>
-              <li className='locations__item'>
-                <a className='locations__item-link tabs__item'>
-                  <span>FastFood</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+
+        <PlacesTypes></PlacesTypes>
+        
         <div className='rest-places'>
           <div className='rest-places__places-container container'>
             <section className='rest-places__places places'>
