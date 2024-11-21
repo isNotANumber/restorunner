@@ -56,7 +56,7 @@ function Map({ city, selectedPointId }: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, filteredOffers, selectedPointId]); // [map, points, selectedPoint]);
+  }, [map, filteredOffers, selectedPointId]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
