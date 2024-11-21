@@ -4,6 +4,7 @@ import Header from '../../components/header/Header';
 import HeaderNav from '../../components/header-nav/HeaderNav';
 import { PLACES_TYPES } from '../../const';
 import { useAppSelector } from '../../store/hooks';
+import Footer from '../../components/footer/Footer';
 
 function FavoritesPage(): JSX.Element {
   const getFilteredOffers = (type: string) =>
@@ -47,17 +48,7 @@ function FavoritesPage(): JSX.Element {
           </section>
         </div>
       </main>
-      <footer className='footer container'>
-        <a className='footer__logo-link' href='main.html'>
-          <img
-            className='footer__logo'
-            src='./img/icons/logo.svg'
-            alt='Restorunner logo'
-            width='124'
-            height='33'
-          />
-        </a>
-      </footer>
+      <Footer></Footer>
     </div>
   );
 }
