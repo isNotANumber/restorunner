@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import Map from '../../components/map/Map';
 import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
 import { Offers } from '../../mocks/types';
-import { City } from '../../types/types';
 import { CITY } from '../../const';
 import { useState } from 'react';
 import Header from '../../components/header/Header';
@@ -10,7 +9,6 @@ import HeaderNav from '../../components/header-nav/HeaderNav';
 import PlacesTypes from '../../components/places-types/PlacesTypes';
 
 type MainPageProps = {
-  city: City;
   offers: Offers;
 };
 
