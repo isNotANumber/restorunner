@@ -14,10 +14,14 @@ function PlaceCard({
 }: PlaceCardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const handleActiveCardIdChange = (id: string) => {
+    dispatch(setActiveCardId(id));
+  };
+
   return (
     <article
       className={`${page}__card place-card`}
-      onMouseEnter={() => dispatch(setActiveCardId(offer.id))}
+      onMouseEnter={() => handleActiveCardIdChange(offer.id)}
     >
       {offer.isPopular ? (
         <div className='place-card__mark'>
