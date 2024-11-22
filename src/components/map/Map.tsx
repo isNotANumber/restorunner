@@ -8,7 +8,6 @@ import { useAppSelector } from '../../store/hooks';
 
 type MapProps = {
   city: City;
-  selectedPointId: string;
 };
 
 const defaultCustomIcon = new Icon({
@@ -23,10 +22,12 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map({ city, selectedPointId }: MapProps): JSX.Element {
+function Map({ city }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
+
+  const activeCardId = useAppSelector((state) => state.catalog.activeCardId);
   const currentPlaceType = useAppSelector(
     (state) => state.catalog.currentPlaceType
   );
@@ -45,7 +46,7 @@ function Map({ city, selectedPointId }: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPointId !== undefined && offer.id === selectedPointId
+            activeCardId !== undefined && offer.id === activeCardId
               ? currentCustomIcon
               : defaultCustomIcon
           )
@@ -56,7 +57,7 @@ function Map({ city, selectedPointId }: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, filteredOffers, selectedPointId]);
+  }, [map, filteredOffers, activeCardId]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }

@@ -1,21 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../mocks/types';
+import { setActiveCardId } from '../../features/catalog/catalogSlice';
+import { useAppDispatch } from '../../store/hooks';
 
 type PlaceCardProps = {
   offer: Offer;
   page: 'rest-places' | 'favorites';
-  onMouseEnter?: (id: string) => void;
 };
 
 function PlaceCard({
   offer,
   page,
-  onMouseEnter,
 }: PlaceCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <article
       className={`${page}__card place-card`}
-      onMouseEnter={() => onMouseEnter ? onMouseEnter(offer.id) : null}
+      onMouseEnter={() => dispatch(setActiveCardId(offer.id))}
     >
       {offer.isPopular ? (
         <div className='place-card__mark'>
