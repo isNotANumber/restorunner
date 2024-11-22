@@ -27,7 +27,7 @@ const catalogSlice = createSlice({
     },
     setActiveCardId: (state, action: PayloadAction<string>) => {
       state.activeCardId = action.payload;
-    }
+    },
   },
 });
 
@@ -35,6 +35,10 @@ export const loadOffers = () => (dispatch: AppDispatch) => {
   dispatch(setOffers(OFFERS));
 };
 
-export const { setCurrentPlaceType, setOffers, setActiveCardId } = catalogSlice.actions;
+export const {
+  setCurrentPlaceType,
+  setOffers,
+  setActiveCardId,
+} = catalogSlice.actions;
 
 export default catalogSlice.reducer;

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizstionStatus } from '../../const';
+import { AppRoute } from '../../const';
 import MainPage from '../../pages/main/MainPage';
 import LoginPage from '../../pages/login/LoginPage';
 import FavoritesPage from '../../pages/favorites/FavoritesPage';
@@ -34,7 +34,7 @@ function App() {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizstionStatus.Auth}>
+              <PrivateRoute>
                 <FavoritesPage></FavoritesPage>
               </PrivateRoute>
             }

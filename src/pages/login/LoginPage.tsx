@@ -1,7 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/Header';
+import { useAppDispatch } from '../../store/hooks';
+import { setAuthorizationStatus } from '../../features/auth/authSlice';
+import { AppRoute, AuthorizstionStatus } from '../../const';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleSignInClick = () => {
+    dispatch(setAuthorizationStatus(AuthorizstionStatus.Auth));
+  };
+
   return (
     <div className='page page--gray page--login'>
       <Helmet>
@@ -36,6 +47,10 @@ function LoginPage(): JSX.Element {
                 />
               </div>
               <button
+                onClick={() => {
+                  handleSignInClick();
+                  navigate(AppRoute.Root);
+                }}
                 className='login__submit form__submit button'
                 type='submit'
               >
