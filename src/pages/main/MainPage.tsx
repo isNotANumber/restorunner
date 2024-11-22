@@ -41,7 +41,7 @@ function MainPage(): JSX.Element {
           <div className='rest-places__places-container container'>
             <section className='rest-places__places places'>
               <h2 className='visually-hidden'>Places</h2>
-              <b className='places__found'>52 Restaurants found</b>
+              <b className='places__found'>{filteredOffers.length} {currentPlaceType}s found</b>
               <PlaceCardsList
                 offers={filteredOffers}
                 onMouseEnter={handleCardMouseEnter}
