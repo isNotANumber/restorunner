@@ -36,13 +36,10 @@ function PlaceCard({
         </a>
       </div>
       <div className='place-card__info'>
-        <h2 className='place-card__name'>
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
-        </h2>
         <div className={`place-card__price-wrapper`}>
           <div className='place-card__price'>
             <b className='place-card__price-value'>{offer.price}</b>
-            <span className='place-card__price-text'>&#47;&nbsp;Price</span>
+            <span className='place-card__price-text'>&nbsp;&#47;&nbsp;Price</span>
           </div>
           <button
             className={`place-card__bookmark-button ${
@@ -56,6 +53,9 @@ function PlaceCard({
             <span className='visually-hidden'>To bookmarks</span>
           </button>
         </div>
+        <h2 className='place-card__name'>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+        </h2>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
             <span style={{ width: `${offer.rating * 20}%` }}></span>
