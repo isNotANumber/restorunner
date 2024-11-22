@@ -4,6 +4,7 @@ import { Offer } from '../../mocks/types';
 import { OFFERS } from '../../mocks/offers'
 import Map from '../../components/map/Map';
 import { CITY } from '../../const';
+import Footer from '../../components/footer/Footer';
 
 function OfferPage(): JSX.Element {
   const { id } = useParams();
@@ -142,10 +143,11 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map'>
-            <Map selectedPointId={offer.id} city={CITY} offers={[offer]}></Map>
+            <Map city={CITY}></Map>
           </section>
         </section>
       </main>
+      <Footer></Footer>
     </div>
   );
 }
