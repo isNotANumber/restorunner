@@ -187,7 +187,6 @@ img {
 
 .favorites {
   padding: 0 15px 93px;
-  border-bottom: 2px solid rgba(222, 222, 222, 0.5);
 }
 .favorites--empty {
   width: 100%;
@@ -279,6 +278,7 @@ img {
   align-items: flex-start;
   padding-top: 48px;
   padding-bottom: 52px;
+  border-top: 2px solid rgba(222, 222, 222, 0.5);
 }
 
 .header__logo-link:not(.header__logo-link--active):hover, .header__logo-link:not(.header__logo-link--active):focus {
@@ -641,9 +641,6 @@ img {
   background-color: #f5f5f5;
 }
 
-.page__main--offer {
-  padding-bottom: 129px;
-}
 .page__main--login {
   display: flex;
   flex-grow: 1;
