@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../mocks/types';
-import { setActiveCardId } from '../../features/catalog/catalogSlice';
+import { setActiveCardId, updateOffer } from '../../features/catalog/catalogSlice';
 import { useAppDispatch } from '../../store/hooks';
 
 type PlaceCardProps = {
@@ -17,6 +17,12 @@ function PlaceCard({
   const handleActiveCardIdChange = (id: string) => {
     dispatch(setActiveCardId(id));
   };
+
+  const handleBookmakrButtonClick = (offer: Offer) => {
+    const isFavorite = !offer.isFavorite;
+
+    dispatch(updateOffer({...offer, isFavorite}))
+  }
 
   return (
     <article
@@ -46,6 +52,7 @@ function PlaceCard({
             <span className='place-card__price-text'>&nbsp;&#47;&nbsp;Price</span>
           </div>
           <button
+          onClick={() => handleBookmakrButtonClick(offer)}
             className={`place-card__bookmark-button ${
               offer.isFavorite ? 'place-card__bookmark-button--active' : ''
             } button`}

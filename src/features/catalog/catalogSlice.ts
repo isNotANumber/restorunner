@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Offers } from '../../mocks/types';
+import { Offers, Offer } from '../../mocks/types';
 import { AppDispatch } from '../../store';
 import { OFFERS } from '../../mocks/offers';
 
@@ -27,6 +27,11 @@ const catalogSlice = createSlice({
     setOffers: (state, action: PayloadAction<Offers>) => {
       state.offers = action.payload;
     },
+    updateOffer: (state, action: PayloadAction<Offer>) => {
+      const targetOfferIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
+
+      state.offers = [...state.offers.slice(0, targetOfferIndex), action.payload, ...state.offers.slice(targetOfferIndex + 1)];
+    },
     setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
       state.favoritesOffersCount = action.payload;
     },
@@ -43,6 +48,7 @@ export const loadOffers = () => (dispatch: AppDispatch) => {
 export const {
   setCurrentPlaceType,
   setOffers,
+  updateOffer,
   setFavoritesOffersCount,
   setActiveCardId,
 } = catalogSlice.actions;
