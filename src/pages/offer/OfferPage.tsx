@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../mocks/types';
-import { OFFERS } from '../../mocks/offers'
+import { OFFERS } from '../../mocks/offers';
 import Map from '../../components/map/Map';
-import { CITY } from '../../const';
 import Footer from '../../components/footer/Footer';
 
 function OfferPage(): JSX.Element {
@@ -143,7 +142,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map'>
-            <Map city={CITY}></Map>
+            <Map offers={[offer]}></Map>
           </section>
         </section>
       </main>

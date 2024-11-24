@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Map from '../../components/map/Map';
 import PlaceCardsList from '../../components/place-cards-list/PlaceCardsList';
-import { CITY } from '../../const';
 import Header from '../../components/header/Header';
 import HeaderNav from '../../components/header-nav/HeaderNav';
 import PlacesTypes from '../../components/places-types/PlacesTypes';
@@ -44,7 +43,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className='rest-places__right-section'>
               <section className='rest-places__map map'>
-                <Map city={CITY}></Map>
+                <Map offers={filteredOffers}></Map>
               </section>
             </div>
           </div>

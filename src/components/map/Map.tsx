@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { City } from '../../types/types';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, CITY } from '../../const';
 import 'leaflet/dist/leaflet.css';
 import { useAppSelector } from '../../store/hooks';
+import { Offers } from '../../mocks/types';
 
 type MapProps = {
-  city: City;
+  offers: Offers;
 };
 
 const defaultCustomIcon = new Icon({
@@ -22,23 +22,18 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map({ city }: MapProps): JSX.Element {
+function Map({ offers }: MapProps): JSX.Element {
+  const city = CITY;
+
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-
   const activeCardId = useAppSelector((state) => state.catalog.activeCardId);
-  const currentPlaceType = useAppSelector(
-    (state) => state.catalog.currentPlaceType
-  );
-  const filteredOffers = useAppSelector((state) =>
-    state.catalog.offers.filter((offer) => offer.type === currentPlaceType)
-  );
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      filteredOffers.forEach((offer) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
@@ -57,7 +52,7 @@ function Map({ city }: MapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, filteredOffers, activeCardId]);
+  }, [map, offers, activeCardId]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
