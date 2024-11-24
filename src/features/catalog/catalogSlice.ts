@@ -6,12 +6,14 @@ import { OFFERS } from '../../mocks/offers';
 type CatalogState = {
   currentPlaceType: string;
   offers: Offers;
+  favoritesOffersCount: number;
   activeCardId: string;
 };
 
 const initialState: CatalogState = {
   currentPlaceType: 'Restaurant',
   offers: [],
+  favoritesOffersCount: 0,
   activeCardId: '',
 };
 
@@ -24,6 +26,9 @@ const catalogSlice = createSlice({
     },
     setOffers: (state, action: PayloadAction<Offers>) => {
       state.offers = action.payload;
+    },
+    setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
+      state.favoritesOffersCount = action.payload;
     },
     setActiveCardId: (state, action: PayloadAction<string>) => {
       state.activeCardId = action.payload;
@@ -38,6 +43,7 @@ export const loadOffers = () => (dispatch: AppDispatch) => {
 export const {
   setCurrentPlaceType,
   setOffers,
+  setFavoritesOffersCount,
   setActiveCardId,
 } = catalogSlice.actions;
 
