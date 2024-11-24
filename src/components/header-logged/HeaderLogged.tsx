@@ -11,7 +11,7 @@ function HeaderLogged(): JSX.Element {
   };
 
   const favoriteOffersCount = useAppSelector(
-    (state) => state.catalog.offers.filter((offer) => offer.isFavorite).length
+    (state) => state.catalog.favoritesOffersCount
   );
 
   return (

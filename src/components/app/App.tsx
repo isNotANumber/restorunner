@@ -9,13 +9,18 @@ import NotFoundPage from '../../pages/not-found/NotFoundPage';
 import PrivateRoute from '../private-route/PrivateRoute';
 import { store } from '../../store';
 import { useEffect } from 'react';
-import { loadOffers } from '../../features/catalog/catalogSlice';
+import {
+  loadOffers,
+  initFavoritesOffersCount,
+} from '../../features/catalog/catalogSlice';
 
 function App() {
   const dispatch = store.dispatch;
 
   useEffect(() => {
     dispatch(loadOffers());
+
+    dispatch(initFavoritesOffersCount());
   }, []);
 
   return (

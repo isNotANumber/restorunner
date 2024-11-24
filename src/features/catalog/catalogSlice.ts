@@ -28,18 +28,35 @@ const catalogSlice = createSlice({
       state.offers = action.payload;
     },
     updateOffer: (state, action: PayloadAction<Offer>) => {
-      const targetOfferIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
+      const targetOfferIndex = state.offers.findIndex(
+        (offer) => offer.id === action.payload.id
+      );
 
-      state.offers = [...state.offers.slice(0, targetOfferIndex), action.payload, ...state.offers.slice(targetOfferIndex + 1)];
+      state.offers = [
+        ...state.offers.slice(0, targetOfferIndex),
+        action.payload,
+        ...state.offers.slice(targetOfferIndex + 1),
+      ];
     },
     setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
       state.favoritesOffersCount = action.payload;
+    },
+    updateFavoritesOffersCount: (state) => {
+      state.favoritesOffersCount = state.offers.filter(
+        (offer) => offer.isFavorite
+      ).length;
     },
     setActiveCardId: (state, action: PayloadAction<string>) => {
       state.activeCardId = action.payload;
     },
   },
 });
+
+export const initFavoritesOffersCount = () => (dispatch: AppDispatch) => {
+  dispatch(
+    setFavoritesOffersCount(OFFERS.filter((offer) => offer.isFavorite).length)
+  );
+};
 
 export const loadOffers = () => (dispatch: AppDispatch) => {
   dispatch(setOffers(OFFERS));
@@ -50,6 +67,7 @@ export const {
   setOffers,
   updateOffer,
   setFavoritesOffersCount,
+  updateFavoritesOffersCount,
   setActiveCardId,
 } = catalogSlice.actions;
 

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../mocks/types';
-import { setActiveCardId, updateOffer } from '../../features/catalog/catalogSlice';
+import {
+  setActiveCardId,
+  updateFavoritesOffersCount,
+  updateOffer,
+} from '../../features/catalog/catalogSlice';
 import { useAppDispatch } from '../../store/hooks';
 
 type PlaceCardProps = {
@@ -8,10 +12,7 @@ type PlaceCardProps = {
   page: 'rest-places' | 'favorites';
 };
 
-function PlaceCard({
-  offer,
-  page,
-}: PlaceCardProps): JSX.Element {
+function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleActiveCardIdChange = (id: string) => {
@@ -21,8 +22,9 @@ function PlaceCard({
   const handleBookmakrButtonClick = (offer: Offer) => {
     const isFavorite = !offer.isFavorite;
 
-    dispatch(updateOffer({...offer, isFavorite}))
-  }
+    dispatch(updateOffer({ ...offer, isFavorite }));
+    dispatch(updateFavoritesOffersCount());
+  };
 
   return (
     <article
@@ -49,10 +51,12 @@ function PlaceCard({
         <div className={`place-card__price-wrapper`}>
           <div className='place-card__price'>
             <b className='place-card__price-value'>{offer.price}</b>
-            <span className='place-card__price-text'>&nbsp;&#47;&nbsp;Price</span>
+            <span className='place-card__price-text'>
+              &nbsp;&#47;&nbsp;Price
+            </span>
           </div>
           <button
-          onClick={() => handleBookmakrButtonClick(offer)}
+            onClick={() => handleBookmakrButtonClick(offer)}
             className={`place-card__bookmark-button ${
               offer.isFavorite ? 'place-card__bookmark-button--active' : ''
             } button`}
