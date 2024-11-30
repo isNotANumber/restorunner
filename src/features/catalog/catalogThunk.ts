@@ -3,7 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Offers } from "../../types/types";
 import { Endpoint } from "../../const";
 import OfferDto from "../../dto/offer/offer.dto";
-import { adaptOffersToClient } from "../../utils/adapters/adaptersToClient";
+import { adaptCategoriesToClient, adaptOffersToClient } from "../../utils/adapters/adaptersToClient";
+import CategoryDto from "../../dto/category/category.dto";
 
 const fetchAllOffers = createAsyncThunk<Offers, undefined, { extra: AxiosInstance }>(
 	"fetchOffers/all",
@@ -13,4 +14,12 @@ const fetchAllOffers = createAsyncThunk<Offers, undefined, { extra: AxiosInstanc
 	}
 );
 
-export { fetchAllOffers };
+const fetchCategories = createAsyncThunk<string[], undefined, { extra: AxiosInstance }>(
+	"fetchCategories/all",
+	async (_arg, { extra: api }) => {
+		const response = await api.get<CategoryDto[]>(Endpoint.Categories);
+		return adaptCategoriesToClient(response.data);
+	}
+);
+
+export { fetchAllOffers, fetchCategories };

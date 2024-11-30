@@ -1,3 +1,4 @@
+import CategoryDto from "../../dto/category/category.dto";
 import OfferDto from "../../dto/offer/offer.dto";
 import { Offer, Offers } from "../../types/types";
 
@@ -18,3 +19,6 @@ export const adaptOffersToClient = (offers: OfferDto[]): Offers =>
 			contacts: { phone: offer.phone, email: offer.email, telegram: offer.telegram },
 		})
 	);
+
+export const adaptCategoriesToClient = (categories: CategoryDto[]): string[] =>
+	categories.map((category: CategoryDto): string => category.name);

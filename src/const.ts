@@ -22,8 +22,7 @@ export const CITY = {
 	zoom: 13,
 };
 
-export const PLACES_TYPES = ["Restaurant", "Cafe", "Bar", "FastFood"];
-
 export enum Endpoint {
 	Offers = "/offers",
+	Categories = "/categories",
 }

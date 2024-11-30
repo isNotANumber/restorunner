@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Offer, Offers } from "../../types/types";
-import { fetchAllOffers } from "./catalogThunk";
+import { fetchAllOffers, fetchCategories } from "./catalogThunk";
 
 type CatalogState = {
 	currentPlaceType: string;
+	categories: string[];
 	offers: Offers;
 	favoritesOffersCount: number;
 	activeCardId: string;
@@ -11,16 +12,21 @@ type CatalogState = {
 
 const initialState: CatalogState = {
 	currentPlaceType: "Restaurant",
+	categories: [],
 	offers: [],
 	favoritesOffersCount: 0,
 	activeCardId: "",
 };
 
 const catalogSlice = createSlice({
-	extraReducers: (builder) =>
+	extraReducers: (builder) => {
 		builder.addCase(fetchAllOffers.fulfilled, (state, action) => {
 			state.offers = action.payload;
-		}),
+		});
+		builder.addCase(fetchCategories.fulfilled, (state, action) => {
+			state.categories = action.payload;
+		});
+	},
 	name: "catalog",
 	initialState,
 	reducers: {
@@ -52,6 +58,7 @@ const catalogSlice = createSlice({
 	selectors: {
 		getAllOffers: (state) => state.offers,
 		getOffersByCategory: (state, category) => state.offers.filter((offer) => offer.type === category),
+		getCategories: (state) => state.categories,
 	},
 });
 
@@ -64,6 +71,6 @@ export const {
 	setActiveCardId,
 } = catalogSlice.actions;
 
-export const { getAllOffers, getOffersByCategory } = catalogSlice.selectors;
+export const { getAllOffers, getOffersByCategory, getCategories } = catalogSlice.selectors;
 
 export default catalogSlice.reducer;
