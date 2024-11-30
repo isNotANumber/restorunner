@@ -9,7 +9,7 @@ import NotFoundPage from "../../pages/not-found/NotFoundPage";
 import PrivateRoute from "../private-route/PrivateRoute";
 import { store } from "../../store";
 import { useEffect } from "react";
-import { fetchAllOffers, fetchCategories } from "../../features/catalog/catalogThunk";
+import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "../../features/catalog/catalogThunk";
 
 function App() {
 	const dispatch = store.dispatch;
@@ -17,6 +17,7 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchCategories());
 		dispatch(fetchAllOffers());
+		dispatch(fetchFavoriteOffers());
 	});
 
 	return (

@@ -38,9 +38,6 @@ const catalogSlice = createSlice({
 		setCurrentPlaceType: (state, action: PayloadAction<string>) => {
 			state.currentPlaceType = action.payload;
 		},
-		setOffers: (state, action: PayloadAction<Offers>) => {
-			state.offers = action.payload;
-		},
 		updateOffer: (state, action: PayloadAction<Offer>) => {
 			const targetOfferIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
 
@@ -62,7 +59,7 @@ const catalogSlice = createSlice({
 	},
 	selectors: {
 		getAllOffers: (state) => state.offers,
-		getFavoriteOffers: (state) => state.offers,
+		getFavoriteOffers: (state) => state.favoriteOffers,
 		getOffersByCategory: (state, category) => state.offers.filter((offer) => offer.type === category),
 		getCategories: (state) => state.categories,
 	},
@@ -70,7 +67,6 @@ const catalogSlice = createSlice({
 
 export const {
 	setCurrentPlaceType,
-	setOffers,
 	updateOffer,
 	setFavoritesOffersCount,
 	updateFavoritesOffersCount,
