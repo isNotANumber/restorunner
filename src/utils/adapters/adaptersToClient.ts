@@ -7,7 +7,7 @@ export const adaptOffersToClient = (offers: OfferDto[]): Offers =>
 		(offer: OfferDto): Offer => ({
 			id: offer.id,
 			title: offer.title,
-			type: offer.category.name,
+			category: offer.category.name,
 			price: offer.price,
 			location: { latitude: offer.latitude, longitude: offer.longitude, zoom: offer.zoom },
 			isFavorite: offer.isFavorite,

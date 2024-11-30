@@ -54,7 +54,7 @@ const catalogSlice = createSlice({
 		getFavoriteOffers: (state) => state.favoriteOffers,
 		getCategories: (state) => state.categories,
 		getActiveCategory: (state) => state.activeCategory,
-		selectOffersByCategory: (state) => state.offers.filter((offer) => offer.type === state.activeCategory),
+		selectOffersByCategory: (state) => state.offers.filter((offer) => offer.category === state.activeCategory),
 	},
 });
 

@@ -10,7 +10,7 @@ function FavoritesPage(): JSX.Element {
 	const categories = useAppSelector((state) => getCategories(state));
 
 	const getCategoryOffers = (type: string) =>
-		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.type === type && offer.isFavorite));
+		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.category === type && offer.isFavorite));
 
 	return (
 		<div className="page">

@@ -67,7 +67,7 @@ function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
 						<span className="visually-hidden">Rating</span>
 					</div>
 				</div>
-				<p className="place-card__type">{offer.type}</p>
+				<p className="place-card__type">{offer.category}</p>
 			</div>
 		</article>
 	);

@@ -8,7 +8,7 @@ export type City = {
 export type Offer = {
 	id: string;
 	title: string;
-	type: string;
+	category: string;
 	price: string;
 	location: {
 		latitude: number;
