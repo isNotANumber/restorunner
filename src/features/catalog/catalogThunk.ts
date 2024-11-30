@@ -14,6 +14,14 @@ const fetchAllOffers = createAsyncThunk<Offers, undefined, { extra: AxiosInstanc
 	}
 );
 
+const fetchFavoriteOffers = createAsyncThunk<Offers, undefined, { extra: AxiosInstance }>(
+	"fetchOffers/favorites",
+	async (_arg, { extra: api }) => {
+		const response = await api.get<OfferDto[]>(Endpoint.Favorites);
+		return adaptOffersToClient(response.data);
+	}
+);
+
 const fetchCategories = createAsyncThunk<string[], undefined, { extra: AxiosInstance }>(
 	"fetchCategories/all",
 	async (_arg, { extra: api }) => {
@@ -22,4 +30,4 @@ const fetchCategories = createAsyncThunk<string[], undefined, { extra: AxiosInst
 	}
 );
 
-export { fetchAllOffers, fetchCategories };
+export { fetchAllOffers, fetchFavoriteOffers, fetchCategories };

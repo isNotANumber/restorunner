@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Offer, Offers } from "../../types/types";
-import { fetchAllOffers, fetchCategories } from "./catalogThunk";
+import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "./catalogThunk";
 
 type CatalogState = {
 	currentPlaceType: string;
 	categories: string[];
 	offers: Offers;
+	favoriteOffers: Offers;
 	favoritesOffersCount: number;
 	activeCardId: string;
 };
@@ -14,6 +15,7 @@ const initialState: CatalogState = {
 	currentPlaceType: "Restaurant",
 	categories: [],
 	offers: [],
+	favoriteOffers: [],
 	favoritesOffersCount: 0,
 	activeCardId: "",
 };
@@ -22,6 +24,9 @@ const catalogSlice = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(fetchAllOffers.fulfilled, (state, action) => {
 			state.offers = action.payload;
+		});
+		builder.addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
+			state.favoriteOffers = action.payload;
 		});
 		builder.addCase(fetchCategories.fulfilled, (state, action) => {
 			state.categories = action.payload;
@@ -57,6 +62,7 @@ const catalogSlice = createSlice({
 	},
 	selectors: {
 		getAllOffers: (state) => state.offers,
+		getFavoriteOffers: (state) => state.offers,
 		getOffersByCategory: (state, category) => state.offers.filter((offer) => offer.type === category),
 		getCategories: (state) => state.categories,
 	},
@@ -71,6 +77,6 @@ export const {
 	setActiveCardId,
 } = catalogSlice.actions;
 
-export const { getAllOffers, getOffersByCategory, getCategories } = catalogSlice.selectors;
+export const { getAllOffers, getFavoriteOffers, getOffersByCategory, getCategories } = catalogSlice.selectors;
 
 export default catalogSlice.reducer;

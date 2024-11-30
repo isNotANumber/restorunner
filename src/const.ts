@@ -24,5 +24,6 @@ export const CITY = {
 
 export enum Endpoint {
 	Offers = "/offers",
+	Favorites = "/offers/favorites",
 	Categories = "/categories",
 }

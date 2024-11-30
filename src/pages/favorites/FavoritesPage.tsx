@@ -4,11 +4,11 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header-nav/HeaderNav";
 import { useAppSelector } from "../../store/hooks";
 import Footer from "../../components/footer/Footer";
-import { getCategories } from "../../features/catalog/catalogSlice";
+import { getCategories, getFavoriteOffers } from "../../features/catalog/catalogSlice";
 
 function FavoritesPage(): JSX.Element {
 	const getFilteredOffers = (type: string) =>
-		useAppSelector((state) => state.catalog.offers.filter((offer) => offer.type === type && offer.isFavorite));
+		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.type === type && offer.isFavorite));
 	const categories = useAppSelector((state) => getCategories(state));
 
 	return (
