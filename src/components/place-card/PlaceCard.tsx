@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Offer } from "../../types/types";
-import { setActiveCardId, updateOffer } from "../../features/catalog/catalogSlice";
+import { setActiveCardId } from "../../features/catalog/catalogSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { patchAddToFavorites, patchRemoveFromFavorites } from "../../features/catalog/catalogThunk";
 
 type PlaceCardProps = {
 	offer: Offer;
@@ -18,7 +19,7 @@ function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
 	const handleBookmakrButtonClick = (offer: Offer) => {
 		const isFavorite = !offer.isFavorite;
 
-		dispatch(updateOffer({ ...offer, isFavorite }));
+		isFavorite ? dispatch(patchAddToFavorites(offer.id)) : dispatch(patchRemoveFromFavorites(offer.id));
 	};
 
 	return (

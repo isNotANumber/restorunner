@@ -1,9 +1,13 @@
 import type { AxiosInstance } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Offers } from "../../types/types";
+import { Offers, Offer } from "../../types/types";
 import { Endpoint } from "../../const";
 import OfferDto from "../../dto/offer/offer.dto";
-import { adaptCategoriesToClient, adaptOffersToClient } from "../../utils/adapters/adaptersToClient";
+import {
+	adaptCategoriesToClient,
+	adaptOffersToClient,
+	adaptOfferToClient,
+} from "../../utils/adapters/adaptersToClient";
 import CategoryDto from "../../dto/category/category.dto";
 
 const fetchAllOffers = createAsyncThunk<Offers, undefined, { extra: AxiosInstance }>(
@@ -30,4 +34,20 @@ const fetchCategories = createAsyncThunk<string[], undefined, { extra: AxiosInst
 	}
 );
 
-export { fetchAllOffers, fetchFavoriteOffers, fetchCategories };
+const patchAddToFavorites = createAsyncThunk<Offer, Offer["id"], { extra: AxiosInstance }>(
+	"patchAddToFavorites/",
+	async (offerId, { extra: api }) => {
+		const response = await api.patch<OfferDto>(`${Endpoint.Offers}/${offerId}`, { isFavorite: true });
+		return adaptOfferToClient(response.data);
+	}
+);
+
+const patchRemoveFromFavorites = createAsyncThunk<Offer, Offer["id"], { extra: AxiosInstance }>(
+	"patchRemoveFromFavorites/",
+	async (offerId, { extra: api }) => {
+		const response = await api.patch<OfferDto>(`${Endpoint.Offers}/${offerId}`, { isFavorite: false });
+		return adaptOfferToClient(response.data);
+	}
+);
+
+export { fetchAllOffers, fetchFavoriteOffers, fetchCategories, patchAddToFavorites, patchRemoveFromFavorites };

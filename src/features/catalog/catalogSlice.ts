@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Offer, Offers } from "../../types/types";
-import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "./catalogThunk";
+import {
+	fetchAllOffers,
+	fetchCategories,
+	fetchFavoriteOffers,
+	patchAddToFavorites,
+	patchRemoveFromFavorites,
+} from "./catalogThunk";
 
 type CatalogState = {
 	activeCategory: string;
@@ -28,6 +34,16 @@ const catalogSlice = createSlice({
 		});
 		builder.addCase(fetchCategories.fulfilled, (state, action) => {
 			state.categories = action.payload;
+		});
+		builder.addCase(patchAddToFavorites.fulfilled, (state, action) => {
+			const updatedOffer = action.payload;
+			state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
+			state.favoriteOffers = state.favoriteOffers.concat(updatedOffer);
+		});
+		builder.addCase(patchRemoveFromFavorites.fulfilled, (state, action) => {
+			const updatedOffer = action.payload;
+			state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
+			state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
 		});
 	},
 	name: "catalog",
