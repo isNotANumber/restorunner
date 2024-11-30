@@ -1,74 +1,71 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Offers, Offer } from '../../mocks/types';
-import { AppDispatch } from '../../store';
-import { OFFERS } from '../../mocks/offers';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Offers, Offer } from "../../mocks/types";
+import { AppDispatch } from "../../store";
+import { OFFERS } from "../../mocks/offers";
 
 type CatalogState = {
-  currentPlaceType: string;
-  offers: Offers;
-  favoritesOffersCount: number;
-  activeCardId: string;
+	currentPlaceType: string;
+	offers: Offers;
+	favoritesOffersCount: number;
+	activeCardId: string;
 };
 
 const initialState: CatalogState = {
-  currentPlaceType: 'Restaurant',
-  offers: [],
-  favoritesOffersCount: 0,
-  activeCardId: '',
+	currentPlaceType: "Restaurant",
+	offers: [],
+	favoritesOffersCount: 0,
+	activeCardId: "",
 };
 
 const catalogSlice = createSlice({
-  name: 'catalog',
-  initialState,
-  reducers: {
-    setCurrentPlaceType: (state, action: PayloadAction<string>) => {
-      state.currentPlaceType = action.payload;
-    },
-    setOffers: (state, action: PayloadAction<Offers>) => {
-      state.offers = action.payload;
-    },
-    updateOffer: (state, action: PayloadAction<Offer>) => {
-      const targetOfferIndex = state.offers.findIndex(
-        (offer) => offer.id === action.payload.id
-      );
+	name: "catalog",
+	initialState,
+	reducers: {
+		setCurrentPlaceType: (state, action: PayloadAction<string>) => {
+			state.currentPlaceType = action.payload;
+		},
+		setOffers: (state, action: PayloadAction<Offers>) => {
+			state.offers = action.payload;
+		},
+		updateOffer: (state, action: PayloadAction<Offer>) => {
+			const targetOfferIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
 
-      state.offers = [
-        ...state.offers.slice(0, targetOfferIndex),
-        action.payload,
-        ...state.offers.slice(targetOfferIndex + 1),
-      ];
-    },
-    setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
-      state.favoritesOffersCount = action.payload;
-    },
-    updateFavoritesOffersCount: (state) => {
-      state.favoritesOffersCount = state.offers.filter(
-        (offer) => offer.isFavorite
-      ).length;
-    },
-    setActiveCardId: (state, action: PayloadAction<string>) => {
-      state.activeCardId = action.payload;
-    },
-  },
+			state.offers = [
+				...state.offers.slice(0, targetOfferIndex),
+				action.payload,
+				...state.offers.slice(targetOfferIndex + 1),
+			];
+		},
+		loadOffers: (state, action: PayloadAction<Offers>) => {
+			state.offers = action.payload;
+		},
+		setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
+			state.favoritesOffersCount = action.payload;
+		},
+		updateFavoritesOffersCount: (state) => {
+			state.favoritesOffersCount = state.offers.filter((offer) => offer.isFavorite).length;
+		},
+		setActiveCardId: (state, action: PayloadAction<string>) => {
+			state.activeCardId = action.payload;
+		},
+	},
 });
 
 export const initFavoritesOffersCount = () => (dispatch: AppDispatch) => {
-  dispatch(
-    setFavoritesOffersCount(OFFERS.filter((offer) => offer.isFavorite).length)
-  );
+	dispatch(setFavoritesOffersCount(OFFERS.filter((offer) => offer.isFavorite).length));
 };
 
 export const loadOffers = () => (dispatch: AppDispatch) => {
-  dispatch(setOffers(OFFERS));
+	dispatch(setOffers(OFFERS));
 };
 
 export const {
-  setCurrentPlaceType,
-  setOffers,
-  updateOffer,
-  setFavoritesOffersCount,
-  updateFavoritesOffersCount,
-  setActiveCardId,
+	setCurrentPlaceType,
+	setOffers,
+	updateOffer,
+	setFavoritesOffersCount,
+	updateFavoritesOffersCount,
+	setActiveCardId,
 } = catalogSlice.actions;
 
 export default catalogSlice.reducer;
