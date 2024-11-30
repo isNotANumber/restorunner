@@ -1,0 +1,20 @@
+import OfferDto from "../../dto/offer/offer.dto";
+import { Offer, Offers } from "../../types/types";
+
+export const adaptOffersToClient = (offers: OfferDto[]): Offers =>
+	offers.map(
+		(offer: OfferDto): Offer => ({
+			id: offer.id,
+			title: offer.title,
+			type: offer.category.name,
+			price: offer.price,
+			location: { latitude: offer.latitude, longitude: offer.longitude, zoom: offer.zoom },
+			isFavorite: offer.isFavorite,
+			isPopular: offer.isPopular,
+			rating: offer.rating,
+			description: offer.description,
+			goods: offer.goods,
+			images: offer.images,
+			contacts: { phone: offer.phone, email: offer.email, telegram: offer.telegram },
+		})
+	);

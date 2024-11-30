@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Offers, Offer } from "../../mocks/types";
-import { AppDispatch } from "../../store";
-import { OFFERS } from "../../mocks/offers";
+import { Offer, Offers } from "../../types/types";
 import { fetchAllOffers } from "./catalogThunk";
 
 type CatalogState = {
@@ -51,15 +49,11 @@ const catalogSlice = createSlice({
 			state.activeCardId = action.payload;
 		},
 	},
+	selectors: {
+		getAllOffers: (state) => state.offers,
+		getOffersByCategory: (state, category) => state.offers.filter((offer) => offer.type === category),
+	},
 });
-
-export const initFavoritesOffersCount = () => (dispatch: AppDispatch) => {
-	dispatch(setFavoritesOffersCount(OFFERS.filter((offer) => offer.isFavorite).length));
-};
-
-export const loadOffers = () => (dispatch: AppDispatch) => {
-	dispatch(setOffers(OFFERS));
-};
 
 export const {
 	setCurrentPlaceType,
@@ -69,5 +63,7 @@ export const {
 	updateFavoritesOffersCount,
 	setActiveCardId,
 } = catalogSlice.actions;
+
+export const { getAllOffers, getOffersByCategory } = catalogSlice.selectors;
 
 export default catalogSlice.reducer;

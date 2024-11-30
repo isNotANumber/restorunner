@@ -9,7 +9,6 @@ import NotFoundPage from "../../pages/not-found/NotFoundPage";
 import PrivateRoute from "../private-route/PrivateRoute";
 import { store } from "../../store";
 import { useEffect } from "react";
-import { loadOffers, initFavoritesOffersCount } from "../../features/catalog/catalogSlice";
 import { fetchAllOffers } from "../../features/catalog/catalogThunk";
 
 function App() {
@@ -18,12 +17,6 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchAllOffers());
 	});
-
-	// useEffect(() => {
-	//   dispatch(loadOffers());
-
-	//   dispatch(initFavoritesOffersCount());
-	// }, []);
 
 	return (
 		<HelmetProvider>
