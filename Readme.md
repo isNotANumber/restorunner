@@ -19,5 +19,5 @@
 
 - HTML;
 - SCSS;
-- React/Redux/Axios;
+- TS/React/Redux/Axios;
 - Vite.
