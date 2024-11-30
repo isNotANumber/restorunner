@@ -4,12 +4,12 @@ import PlaceCardsList from "../../components/place-cards-list/PlaceCardsList";
 import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header-nav/HeaderNav";
 import PlacesTypes from "../../components/places-types/PlacesTypes";
-import { getOffersByCategory } from "../../features/catalog/catalogSlice";
 import { useAppSelector } from "../../store/hooks";
+import { selectOffersByCategory } from "../../features/catalog/catalogSlice";
 
 function MainPage(): JSX.Element {
-	const currentPlaceType = useAppSelector((state) => state.catalog.currentPlaceType);
-	const filteredOffers = useAppSelector((state) => getOffersByCategory(state, currentPlaceType));
+	const currentPlaceType = useAppSelector((state) => state.catalog.activeCategory);
+	const offers = useAppSelector(selectOffersByCategory);
 
 	return (
 		<div className="page page--gray page--main">
@@ -31,13 +31,13 @@ function MainPage(): JSX.Element {
 						<section className="rest-places__places places">
 							<h2 className="visually-hidden">Places</h2>
 							<b className="places__found">
-								{filteredOffers.length} {currentPlaceType}s found
+								{offers.length} {currentPlaceType}s found
 							</b>
-							<PlaceCardsList offers={filteredOffers} page="rest-places"></PlaceCardsList>
+							<PlaceCardsList offers={offers} page="rest-places"></PlaceCardsList>
 						</section>
 						<div className="rest-places__right-section">
 							<section className="rest-places__map map">
-								<Map offers={filteredOffers}></Map>
+								<Map offers={offers}></Map>
 							</section>
 						</div>
 					</div>

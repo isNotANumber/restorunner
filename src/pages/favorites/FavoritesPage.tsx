@@ -7,9 +7,10 @@ import Footer from "../../components/footer/Footer";
 import { getCategories, getFavoriteOffers } from "../../features/catalog/catalogSlice";
 
 function FavoritesPage(): JSX.Element {
-	const getFilteredOffers = (type: string) =>
-		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.type === type && offer.isFavorite));
 	const categories = useAppSelector((state) => getCategories(state));
+
+	const getCategoryOffers = (type: string) =>
+		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.type === type && offer.isFavorite));
 
 	return (
 		<div className="page">
@@ -35,7 +36,7 @@ function FavoritesPage(): JSX.Element {
 											</a>
 										</div>
 									</div>
-									<PlaceCardsList page="favorites" offers={getFilteredOffers(type)}></PlaceCardsList>
+									<PlaceCardsList page="favorites" offers={getCategoryOffers(type)}></PlaceCardsList>
 								</li>
 							))}
 						</ul>

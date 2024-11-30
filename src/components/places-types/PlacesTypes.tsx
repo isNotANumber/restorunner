@@ -1,4 +1,4 @@
-import { getCategories, setCurrentPlaceType } from "../../features/catalog/catalogSlice";
+import { getCategories, setActiveCategory } from "../../features/catalog/catalogSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 function PlacesTypes(): JSX.Element {
@@ -6,10 +6,10 @@ function PlacesTypes(): JSX.Element {
 
 	const categories = useAppSelector((state) => getCategories(state));
 
-	const currentPlaceType = useAppSelector((state) => state.catalog.currentPlaceType);
+	const currentPlaceType = useAppSelector((state) => state.catalog.activeCategory);
 
 	const handlePlaceTypeChange = (placeType: string) => {
-		dispatch(setCurrentPlaceType(placeType));
+		dispatch(setActiveCategory(placeType));
 	};
 
 	return (

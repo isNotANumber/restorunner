@@ -3,20 +3,18 @@ import { Offer, Offers } from "../../types/types";
 import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "./catalogThunk";
 
 type CatalogState = {
-	currentPlaceType: string;
+	activeCategory: string;
 	categories: string[];
 	offers: Offers;
 	favoriteOffers: Offers;
-	favoritesOffersCount: number;
 	activeCardId: string;
 };
 
 const initialState: CatalogState = {
-	currentPlaceType: "Restaurant",
+	activeCategory: "Restaurant",
 	categories: [],
 	offers: [],
 	favoriteOffers: [],
-	favoritesOffersCount: 0,
 	activeCardId: "",
 };
 
@@ -35,8 +33,8 @@ const catalogSlice = createSlice({
 	name: "catalog",
 	initialState,
 	reducers: {
-		setCurrentPlaceType: (state, action: PayloadAction<string>) => {
-			state.currentPlaceType = action.payload;
+		setActiveCategory: (state, action: PayloadAction<string>) => {
+			state.activeCategory = action.payload;
 		},
 		updateOffer: (state, action: PayloadAction<Offer>) => {
 			const targetOfferIndex = state.offers.findIndex((offer) => offer.id === action.payload.id);
@@ -47,32 +45,21 @@ const catalogSlice = createSlice({
 				...state.offers.slice(targetOfferIndex + 1),
 			];
 		},
-		setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
-			state.favoritesOffersCount = action.payload;
-		},
-		updateFavoritesOffersCount: (state) => {
-			state.favoritesOffersCount = state.offers.filter((offer) => offer.isFavorite).length;
-		},
 		setActiveCardId: (state, action: PayloadAction<string>) => {
 			state.activeCardId = action.payload;
 		},
 	},
 	selectors: {
-		getAllOffers: (state) => state.offers,
+		getOffers: (state) => state.offers,
 		getFavoriteOffers: (state) => state.favoriteOffers,
-		getOffersByCategory: (state, category) => state.offers.filter((offer) => offer.type === category),
 		getCategories: (state) => state.categories,
+		getActiveCategory: (state) => state.activeCategory,
+		selectOffersByCategory: (state) => state.offers.filter((offer) => offer.type === state.activeCategory),
 	},
 });
 
-export const {
-	setCurrentPlaceType,
-	updateOffer,
-	setFavoritesOffersCount,
-	updateFavoritesOffersCount,
-	setActiveCardId,
-} = catalogSlice.actions;
+export const { setActiveCategory, updateOffer, setActiveCardId } = catalogSlice.actions;
 
-export const { getAllOffers, getFavoriteOffers, getOffersByCategory, getCategories } = catalogSlice.selectors;
+export const { getOffers, getFavoriteOffers, getCategories, selectOffersByCategory } = catalogSlice.selectors;
 
 export default catalogSlice.reducer;
