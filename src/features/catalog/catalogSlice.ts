@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Offers, Offer } from "../../mocks/types";
 import { AppDispatch } from "../../store";
 import { OFFERS } from "../../mocks/offers";
+import { fetchAllOffers } from "./catalogThunk";
 
 type CatalogState = {
 	currentPlaceType: string;
@@ -18,6 +19,10 @@ const initialState: CatalogState = {
 };
 
 const catalogSlice = createSlice({
+	extraReducers: (builder) =>
+		builder.addCase(fetchAllOffers.fulfilled, (state, action) => {
+			state.offers = action.payload;
+		}),
 	name: "catalog",
 	initialState,
 	reducers: {
@@ -35,9 +40,6 @@ const catalogSlice = createSlice({
 				action.payload,
 				...state.offers.slice(targetOfferIndex + 1),
 			];
-		},
-		loadOffers: (state, action: PayloadAction<Offers>) => {
-			state.offers = action.payload;
 		},
 		setFavoritesOffersCount: (state, action: PayloadAction<number>) => {
 			state.favoritesOffersCount = action.payload;

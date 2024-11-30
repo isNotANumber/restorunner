@@ -1,12 +1,24 @@
 import axios, { AxiosInstance } from "axios";
+import { getToken } from "./token";
 
-const BACKEND_URL = "http://localhost:3000/";
-const REQUEST_TIMEOUT = 5000;
+const enum Default {
+	BaseUrl = "http://localhost:3000",
+	timeout = 5000,
+}
 
 export const createAPI = (): AxiosInstance => {
 	const api = axios.create({
-		baseURL: BACKEND_URL,
-		timeout: REQUEST_TIMEOUT,
+		baseURL: Default.BaseUrl as string,
+		timeout: Default.timeout as number,
+	});
+
+	api.interceptors.request.use((config) => {
+		const token = getToken();
+		if (token && config.headers) {
+			config.headers["X-token"] = token;
+		}
+
+		return config;
 	});
 
 	return api;
