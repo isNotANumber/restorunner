@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/header/Header";
 import { useAppDispatch } from "../../store/hooks";
-import { setAuthorizationStatus } from "../../store/slices/authSlice";
+import { authActions } from "../../store/slices/authSlice";
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function LoginPage(): JSX.Element {
 	const navigate = useNavigate();
 
 	const handleSignInClick = () => {
-		dispatch(setAuthorizationStatus(AuthorizstionStatus.Auth));
+		dispatch(authActions.setAuthorizationStatus(AuthorizstionStatus.Auth));
 	};
 
 	return (

@@ -18,12 +18,11 @@ const authSlice = createSlice({
 		},
 	},
 	selectors: {
-		getAuthorizationStatus: (state) => state.authorizationStatus,
+		getAuthorizationStatus: (state: AuthState) => state.authorizationStatus,
 	},
 });
 
-export const { setAuthorizationStatus } = authSlice.actions;
+const authActions = authSlice.actions;
+const authSelectors = authSlice.selectors;
 
-export const { getAuthorizationStatus } = authSlice.selectors;
-
-export default authSlice;
+export { authActions, authSelectors, authSlice };

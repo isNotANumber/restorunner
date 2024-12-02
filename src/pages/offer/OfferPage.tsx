@@ -4,11 +4,10 @@ import { Offer } from "../../types/types";
 import Map from "../../components/map/Map";
 import Footer from "../../components/footer/Footer";
 import { useAppSelector } from "../../store/hooks";
-import { getOffers } from "../../store/slices/catalogSlice";
+import { catalogSelectors } from "../../store/slices/catalogSlice";
 
 function OfferPage(): JSX.Element {
-	const offers = useAppSelector(getOffers);
-
+	const offers = useAppSelector(catalogSelectors.getOffers);
 	const { id } = useParams();
 	const offer: Offer = offers.find((item) => item.id === id) as Offer;
 

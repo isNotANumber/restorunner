@@ -1,11 +1,11 @@
 import { AuthorizstionStatus } from "../../const";
 import { useAppSelector } from "../../store/hooks";
-import { getAuthorizationStatus } from "../../store/slices/authSlice";
+import { authSelectors } from "../../store/slices/authSlice";
 import UserAuthorized from "../user/UserAuthorized";
 import UserUnauthorized from "../user/UserUnauthorized";
 
 function HeaderNav(): JSX.Element {
-	const authorizationStatus = useAppSelector(getAuthorizationStatus);
+	const authorizationStatus = useAppSelector(authSelectors.getAuthorizationStatus);
 
 	return (
 		<nav className="header__nav">

@@ -13,7 +13,7 @@ type CatalogState = {
 	categories: string[];
 	offers: Offers;
 	favoriteOffers: Offers;
-	activeCardId: string;
+	activeCardId: string | undefined;
 };
 
 const initialState: CatalogState = {
@@ -21,35 +21,36 @@ const initialState: CatalogState = {
 	categories: [],
 	offers: [],
 	favoriteOffers: [],
-	activeCardId: "",
+	activeCardId: undefined,
 };
 
 const catalogSlice = createSlice({
 	extraReducers: (builder) => {
-		builder.addCase(fetchAllOffers.fulfilled, (state, action) => {
-			state.offers = action.payload;
-		});
-		builder.addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
-			state.favoriteOffers = action.payload;
-		});
-		builder.addCase(fetchCategories.fulfilled, (state, action) => {
-			state.categories = action.payload;
-		});
-		builder.addCase(patchAddToFavorites.fulfilled, (state, action) => {
-			const updatedOffer = action.payload;
-			state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
-			state.favoriteOffers = state.favoriteOffers.concat(updatedOffer);
-		});
-		builder.addCase(patchRemoveFromFavorites.fulfilled, (state, action) => {
-			const updatedOffer = action.payload;
-			state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
-			state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
-		});
+		builder
+			.addCase(fetchAllOffers.fulfilled, (state, action) => {
+				state.offers = action.payload;
+			})
+			.addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
+				state.favoriteOffers = action.payload;
+			})
+			.addCase(fetchCategories.fulfilled, (state, action) => {
+				state.categories = action.payload;
+			})
+			.addCase(patchAddToFavorites.fulfilled, (state, action) => {
+				const updatedOffer = action.payload;
+				state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
+				state.favoriteOffers = state.favoriteOffers.concat(updatedOffer);
+			})
+			.addCase(patchRemoveFromFavorites.fulfilled, (state, action) => {
+				const updatedOffer = action.payload;
+				state.offers = state.offers.map((offer) => (offer.id === updatedOffer.id ? updatedOffer : offer));
+				state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
+			});
 	},
 	name: "catalog",
 	initialState,
 	reducers: {
-		setActiveCategory: (state, action: PayloadAction<string>) => {
+		setActiveCategory: (state, action: PayloadAction<Offer["category"]>) => {
 			state.activeCategory = action.payload;
 		},
 		updateOffer: (state, action: PayloadAction<Offer>) => {
@@ -61,22 +62,21 @@ const catalogSlice = createSlice({
 				...state.offers.slice(targetOfferIndex + 1),
 			];
 		},
-		setActiveCardId: (state, action: PayloadAction<string>) => {
+		setActiveCardId: (state, action: PayloadAction<Offer["id"] | undefined>) => {
 			state.activeCardId = action.payload;
 		},
 	},
 	selectors: {
-		getOffers: (state) => state.offers,
-		getFavoriteOffers: (state) => state.favoriteOffers,
-		getCategories: (state) => state.categories,
-		getActiveCategory: (state) => state.activeCategory,
-		selectOffersByCategory: (state) => state.offers.filter((offer) => offer.category === state.activeCategory),
+		getOffers: (state: CatalogState) => state.offers,
+		getFavoriteOffers: (state: CatalogState) => state.favoriteOffers,
+		getCategories: (state: CatalogState) => state.categories,
+		getActiveCategory: (state: CatalogState) => state.activeCategory,
+		selectOffersByCategory: (state: CatalogState) =>
+			state.offers.filter((offer) => offer.category === state.activeCategory),
 	},
 });
 
-export const { setActiveCategory, updateOffer, setActiveCardId } = catalogSlice.actions;
+const catalogActions = catalogSlice.actions;
+const catalogSelectors = catalogSlice.selectors;
 
-export const { getOffers, getFavoriteOffers, getCategories, getActiveCategory, selectOffersByCategory } =
-	catalogSlice.selectors;
-
-export default catalogSlice;
+export { catalogActions, catalogSelectors, catalogSlice };

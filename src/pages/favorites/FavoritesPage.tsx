@@ -4,13 +4,11 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import { useAppSelector } from "../../store/hooks";
 import Footer from "../../components/footer/Footer";
-import { getCategories, getFavoriteOffers } from "../../store/slices/catalogSlice";
+import { catalogSelectors } from "../../store/slices/catalogSlice";
 
 function FavoritesPage(): JSX.Element {
-	const categories = useAppSelector((state) => getCategories(state));
-
-	const getCategoryOffers = (type: string) =>
-		useAppSelector((state) => getFavoriteOffers(state).filter((offer) => offer.category === type && offer.isFavorite));
+	const categories = useAppSelector(catalogSelectors.getCategories);
+	const favoriteOffers = useAppSelector(catalogSelectors.getFavoriteOffers);
 
 	return (
 		<div className="page">
@@ -36,7 +34,10 @@ function FavoritesPage(): JSX.Element {
 											</a>
 										</div>
 									</div>
-									<PlaceCardsList page="favorites" offers={getCategoryOffers(type)}></PlaceCardsList>
+									<PlaceCardsList
+										page="favorites"
+										offers={favoriteOffers.filter((offer) => offer.category === type)}
+									></PlaceCardsList>
 								</li>
 							))}
 						</ul>

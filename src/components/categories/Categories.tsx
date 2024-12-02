@@ -1,14 +1,10 @@
-import { getCategories, getActiveCategory, setActiveCategory } from "../../store/slices/catalogSlice";
+import { catalogActions, catalogSelectors } from "../../store/slices/catalogSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 function Categories(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const categories = useAppSelector(getCategories);
-	const currentCategory = useAppSelector(getActiveCategory);
-
-	const handleCategoryChange = (category: string) => {
-		dispatch(setActiveCategory(category));
-	};
+	const categories = useAppSelector(catalogSelectors.getCategories);
+	const currentCategory = useAppSelector(catalogSelectors.getActiveCategory);
 
 	return (
 		<div className="tabs">
@@ -17,7 +13,7 @@ function Categories(): JSX.Element {
 					{categories.map((category) => (
 						<li key={category} className="places-types__item">
 							<a
-								onClick={() => handleCategoryChange(category)}
+								onClick={() => dispatch(catalogActions.setActiveCategory(category))}
 								className={`places-types__item-link tabs__item ${
 									category === currentCategory ? "tabs__item--active" : ""
 								}`}

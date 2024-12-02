@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Offer } from "../../types/types";
-import { setActiveCardId } from "../../store/slices/catalogSlice";
+import { catalogActions } from "../../store/slices/catalogSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { patchAddToFavorites, patchRemoveFromFavorites } from "../../store/thunks/catalogThunk";
 
@@ -12,18 +12,16 @@ type PlaceCardProps = {
 function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
 	const dispatch = useAppDispatch();
 
-	const handleActiveCardIdChange = (id: string) => {
-		dispatch(setActiveCardId(id));
+	const handleCardMouseEnter = (offerId: Offer["id"]) => {
+		return dispatch(catalogActions.setActiveCardId(offerId));
 	};
 
-	const handleBookmakrButtonClick = (offer: Offer) => {
-		const isFavorite = !offer.isFavorite;
-
-		isFavorite ? dispatch(patchAddToFavorites(offer.id)) : dispatch(patchRemoveFromFavorites(offer.id));
+	const handleBookmarkBtnClick = (offer: Offer) => {
+		return offer.isFavorite ? dispatch(patchRemoveFromFavorites(offer.id)) : dispatch(patchAddToFavorites(offer.id));
 	};
 
 	return (
-		<article className={`${page}__card place-card`} onMouseEnter={() => handleActiveCardIdChange(offer.id)}>
+		<article className={`${page}__card place-card`} onMouseEnter={() => handleCardMouseEnter(offer.id)}>
 			{offer.isPopular ? (
 				<div className="place-card__mark">
 					<span>Popular</span>
@@ -47,7 +45,7 @@ function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
 						<span className="place-card__price-text">&nbsp;&#47;&nbsp;Price</span>
 					</div>
 					<button
-						onClick={() => handleBookmakrButtonClick(offer)}
+						onClick={() => handleBookmarkBtnClick(offer)}
 						className={`place-card__bookmark-button ${
 							offer.isFavorite ? "place-card__bookmark-button--active" : ""
 						} button`}

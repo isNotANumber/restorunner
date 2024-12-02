@@ -5,11 +5,11 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import Categories from "../../components/categories/Categories";
 import { useAppSelector } from "../../store/hooks";
-import { selectOffersByCategory, getActiveCategory } from "../../store/slices/catalogSlice";
+import { catalogSelectors } from "../../store/slices/catalogSlice";
 
 function MainPage(): JSX.Element {
-	const currentPlaceType = useAppSelector(getActiveCategory);
-	const offers = useAppSelector(selectOffersByCategory);
+	const currentPlaceType = useAppSelector(catalogSelectors.getActiveCategory);
+	const offers = useAppSelector(catalogSelectors.selectOffersByCategory);
 
 	return (
 		<div className="page page--gray page--main">
