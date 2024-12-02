@@ -3,13 +3,13 @@ import { getToken } from "./token";
 
 const enum Default {
 	BaseUrl = "http://localhost:3000",
-	timeout = 5000,
+	Timeout = 5000,
 }
 
 export const createAPI = (): AxiosInstance => {
 	const api = axios.create({
 		baseURL: Default.BaseUrl as string,
-		timeout: Default.timeout as number,
+		timeout: Default.Timeout as number,
 	});
 
 	api.interceptors.request.use((config) => {
