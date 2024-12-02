@@ -4,7 +4,7 @@ import PlaceCardsList from "../../components/place-cards-list/PlaceCardsList";
 import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import Categories from "../../components/categories/Categories";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../hooks/store";
 import { catalogSelectors } from "../../store/slices/catalogSlice";
 
 function MainPage(): JSX.Element {

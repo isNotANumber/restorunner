@@ -1,5 +1,5 @@
 import { catalogActions, catalogSelectors } from "../../store/slices/catalogSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/store";
 
 function Categories(): JSX.Element {
 	const dispatch = useAppDispatch();

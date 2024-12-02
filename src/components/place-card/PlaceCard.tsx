@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Offer } from "../../types/types";
 import { catalogActions } from "../../store/slices/catalogSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../hooks/store";
 import { patchAddToFavorites, patchRemoveFromFavorites } from "../../store/thunks/catalogThunk";
 
 type PlaceCardProps = {

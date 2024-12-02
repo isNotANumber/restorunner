@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Offer } from "../../types/types";
 import Map from "../../components/map/Map";
 import Footer from "../../components/footer/Footer";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../hooks/store";
 import { catalogSelectors } from "../../store/slices/catalogSlice";
 
 function OfferPage(): JSX.Element {

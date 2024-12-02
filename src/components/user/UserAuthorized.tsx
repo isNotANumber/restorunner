@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AppRoute, AuthorizstionStatus } from "../../const";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { authActions } from "../../store/slices/authSlice";
 import { catalogSelectors } from "../../store/slices/catalogSlice";
 

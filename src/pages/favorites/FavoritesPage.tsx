@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import PlaceCardsList from "../../components/place-cards-list/PlaceCardsList";
 import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../hooks/store";
 import Footer from "../../components/footer/Footer";
 import { catalogSelectors } from "../../store/slices/catalogSlice";
 

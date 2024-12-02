@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/header/Header";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../hooks/store";
 import { authActions } from "../../store/slices/authSlice";
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useNavigate } from "react-router-dom";
