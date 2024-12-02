@@ -7,6 +7,7 @@ import {
 	patchAddToFavorites,
 	patchRemoveFromFavorites,
 } from "../thunks/catalogThunk";
+import { RequestStatus } from "../../const";
 
 type CatalogState = {
 	activeCategory: string;
@@ -14,6 +15,7 @@ type CatalogState = {
 	offers: Offers;
 	favoriteOffers: Offers;
 	activeCardId: string | undefined;
+	loadingStatus: RequestStatus;
 };
 
 const initialState: CatalogState = {
@@ -22,6 +24,7 @@ const initialState: CatalogState = {
 	offers: [],
 	favoriteOffers: [],
 	activeCardId: undefined,
+	loadingStatus: RequestStatus.Idle,
 };
 
 const catalogSlice = createSlice({

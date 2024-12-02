@@ -27,3 +27,10 @@ export enum Endpoint {
 	Favorites = "/offers/favorites",
 	Categories = "/categories",
 }
+
+export const enum RequestStatus {
+	Idle = "Idle",
+	Loading = "Loading",
+	Success = "Success",
+	Failed = "Failed",
+}
