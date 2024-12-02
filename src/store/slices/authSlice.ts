@@ -26,4 +26,4 @@ export const { setAuthorizationStatus } = authSlice.actions;
 
 export const { getAuthorizationStatus } = authSlice.selectors;
 
-export default authSlice.reducer;
+export default authSlice;

@@ -79,4 +79,4 @@ export const { setActiveCategory, updateOffer, setActiveCardId } = catalogSlice.
 export const { getOffers, getFavoriteOffers, getCategories, getActiveCategory, selectOffersByCategory } =
 	catalogSlice.selectors;
 
-export default catalogSlice.reducer;
+export default catalogSlice;
