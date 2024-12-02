@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import PlaceCardsList from "../../components/place-cards-list/PlaceCardsList";
 import Header from "../../components/header/Header";
-import HeaderNav from "../../components/header-nav/HeaderNav";
+import HeaderNav from "../../components/header/HeaderNav";
 import { useAppSelector } from "../../store/hooks";
 import Footer from "../../components/footer/Footer";
 import { getCategories, getFavoriteOffers } from "../../store/slices/catalogSlice";

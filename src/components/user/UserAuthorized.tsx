@@ -4,14 +4,13 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setAuthorizationStatus } from "../../store/slices/authSlice";
 import { getFavoriteOffers } from "../../store/slices/catalogSlice";
 
-function HeaderLogged(): JSX.Element {
+function UserAuthorized(): JSX.Element {
 	const dispatch = useAppDispatch();
+	const favoriteOffersCount = useAppSelector(getFavoriteOffers).length;
 
 	const handleSignOutClick = () => {
 		dispatch(setAuthorizationStatus(AuthorizstionStatus.NoAuth));
 	};
-
-	const favoriteOffersCount = useAppSelector(getFavoriteOffers).length;
 
 	return (
 		<>
@@ -31,4 +30,4 @@ function HeaderLogged(): JSX.Element {
 	);
 }
 
-export default HeaderLogged;
+export default UserAuthorized;

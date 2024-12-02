@@ -1,27 +1,29 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthorizstionStatus } from '../../const';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthorizstionStatus } from "../../const";
 
 type AuthState = {
-  authorizationStatus: AuthorizstionStatus;
+	authorizationStatus: AuthorizstionStatus;
 };
 
 const initialState: AuthState = {
-  authorizationStatus: AuthorizstionStatus.NoAuth,
+	authorizationStatus: AuthorizstionStatus.NoAuth,
 };
 
 const authSlice = createSlice({
-  name: 'catalog',
-  initialState,
-  reducers: {
-    setAuthorizationStatus: (
-      state,
-      action: PayloadAction<AuthorizstionStatus>
-    ) => {
-      state.authorizationStatus = action.payload;
-    },
-  },
+	name: "auth",
+	initialState,
+	reducers: {
+		setAuthorizationStatus: (state, action: PayloadAction<AuthorizstionStatus>) => {
+			state.authorizationStatus = action.payload;
+		},
+	},
+	selectors: {
+		getAuthorizationStatus: (state) => state.authorizationStatus,
+	},
 });
 
 export const { setAuthorizationStatus } = authSlice.actions;
+
+export const { getAuthorizationStatus } = authSlice.selectors;
 
 export default authSlice.reducer;
