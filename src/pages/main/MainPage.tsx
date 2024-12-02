@@ -3,7 +3,7 @@ import Map from "../../components/map/Map";
 import PlaceCardsList from "../../components/place-cards-list/PlaceCardsList";
 import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header-nav/HeaderNav";
-import PlacesTypes from "../../components/places-types/PlacesTypes";
+import Categories from "../../components/categories/Categories";
 import { useAppSelector } from "../../store/hooks";
 import { selectOffersByCategory } from "../../store/slices/catalogSlice";
 
@@ -24,7 +24,7 @@ function MainPage(): JSX.Element {
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Places</h1>
 
-				<PlacesTypes></PlacesTypes>
+				<Categories></Categories>
 
 				<div className="rest-places">
 					<div className="rest-places__places-container container">

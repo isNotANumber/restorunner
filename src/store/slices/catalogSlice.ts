@@ -76,6 +76,7 @@ const catalogSlice = createSlice({
 
 export const { setActiveCategory, updateOffer, setActiveCardId } = catalogSlice.actions;
 
-export const { getOffers, getFavoriteOffers, getCategories, selectOffersByCategory } = catalogSlice.selectors;
+export const { getOffers, getFavoriteOffers, getCategories, getActiveCategory, selectOffersByCategory } =
+	catalogSlice.selectors;
 
 export default catalogSlice.reducer;
