@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
-import { authActions } from "../../store/slices/authSlice";
+import { userActions } from "../../store/slices/userSlice";
 import { offersSelectors } from "../../store/slices/offersSlice";
 
 function UserAuthorized(): JSX.Element {
@@ -10,7 +10,7 @@ function UserAuthorized(): JSX.Element {
 	const favoriteOffersCount = useAppSelector(getFavoriteOffers).length;
 
 	const handleSignOutClick = () => {
-		dispatch(authActions.setAuthorizationStatus(AuthorizstionStatus.NoAuth));
+		dispatch(userActions.setUserStatus(AuthorizstionStatus.NoAuth));
 	};
 
 	return (
