@@ -34,3 +34,10 @@ export const enum RequestStatus {
 	Success = "Success",
 	Failed = "Failed",
 }
+
+export const enum Categories {
+	Restaurant = "Restaurant",
+	Cafe = "Cafe",
+	Bar = "Bar",
+	FastFood = "FastFood",
+}
