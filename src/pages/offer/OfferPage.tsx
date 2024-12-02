@@ -4,7 +4,7 @@ import { Offer } from "../../types/types";
 import Map from "../../components/map/Map";
 import Footer from "../../components/footer/Footer";
 import { useAppSelector } from "../../store/hooks";
-import { getOffers } from "../../features/catalog/catalogSlice";
+import { getOffers } from "../../store/slices/catalogSlice";
 
 function OfferPage(): JSX.Element {
 	const offers = useAppSelector(getOffers);

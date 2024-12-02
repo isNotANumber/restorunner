@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setAuthorizationStatus } from "../../features/auth/authSlice";
-import { getFavoriteOffers } from "../../features/catalog/catalogSlice";
+import { setAuthorizationStatus } from "../../store/slices/authSlice";
+import { getFavoriteOffers } from "../../store/slices/catalogSlice";
 
 function HeaderLogged(): JSX.Element {
 	const dispatch = useAppDispatch();

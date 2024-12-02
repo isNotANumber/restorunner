@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Offer } from "../../types/types";
-import { setActiveCardId } from "../../features/catalog/catalogSlice";
+import { setActiveCardId } from "../../store/slices/catalogSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { patchAddToFavorites, patchRemoveFromFavorites } from "../../features/catalog/catalogThunk";
+import { patchAddToFavorites, patchRemoveFromFavorites } from "../../store/thunks/catalogThunk";
 
 type PlaceCardProps = {
 	offer: Offer;

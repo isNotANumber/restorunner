@@ -5,7 +5,7 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header-nav/HeaderNav";
 import PlacesTypes from "../../components/places-types/PlacesTypes";
 import { useAppSelector } from "../../store/hooks";
-import { selectOffersByCategory } from "../../features/catalog/catalogSlice";
+import { selectOffersByCategory } from "../../store/slices/catalogSlice";
 
 function MainPage(): JSX.Element {
 	const currentPlaceType = useAppSelector((state) => state.catalog.activeCategory);

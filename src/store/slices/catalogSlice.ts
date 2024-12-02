@@ -6,7 +6,7 @@ import {
 	fetchFavoriteOffers,
 	patchAddToFavorites,
 	patchRemoveFromFavorites,
-} from "./catalogThunk";
+} from "../thunks/catalogThunk";
 
 type CatalogState = {
 	activeCategory: string;

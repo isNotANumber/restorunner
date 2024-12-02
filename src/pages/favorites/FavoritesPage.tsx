@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header-nav/HeaderNav";
 import { useAppSelector } from "../../store/hooks";
 import Footer from "../../components/footer/Footer";
-import { getCategories, getFavoriteOffers } from "../../features/catalog/catalogSlice";
+import { getCategories, getFavoriteOffers } from "../../store/slices/catalogSlice";
 
 function FavoritesPage(): JSX.Element {
 	const categories = useAppSelector((state) => getCategories(state));

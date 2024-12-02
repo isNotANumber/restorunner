@@ -1,4 +1,4 @@
-import { getCategories, setActiveCategory } from "../../features/catalog/catalogSlice";
+import { getCategories, setActiveCategory } from "../../store/slices/catalogSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 function PlacesTypes(): JSX.Element {
