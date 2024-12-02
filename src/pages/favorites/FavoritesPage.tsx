@@ -8,8 +8,8 @@ import { offersSelectors } from "../../store/slices/offersSlice";
 import { categoriesSelectors } from "../../store/slices/categoriesSlice";
 
 function FavoritesPage(): JSX.Element {
-	const categories = useAppSelector(categoriesSelectors.getCategories);
-	const favoriteOffers = useAppSelector(offersSelectors.getFavoriteOffers);
+	const categories = useAppSelector(categoriesSelectors.categories);
+	const favoriteOffers = useAppSelector(offersSelectors.favoriteOffers);
 
 	return (
 		<div className="page">

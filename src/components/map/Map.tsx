@@ -29,7 +29,7 @@ function Map({ offers }: MapProps): JSX.Element {
 	const mapRef = useRef(null);
 	const map = useMap(mapRef, city);
 
-	const activeCardId = useAppSelector(offersSelectors.getActiveOfferId);
+	const activeCardId = useAppSelector(offersSelectors.activeOfferId);
 
 	useEffect(() => {
 		if (map) {

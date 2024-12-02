@@ -12,14 +12,14 @@ type OffersState = {
 	offers: Offers;
 	favoriteOffers: Offers;
 	activeOfferId: string | undefined | null;
-	loadingStatus: RequestStatus;
+	requestStatus: RequestStatus;
 };
 
 const initialState: OffersState = {
 	offers: [],
 	favoriteOffers: [],
 	activeOfferId: null,
-	loadingStatus: RequestStatus.Idle,
+	requestStatus: RequestStatus.Idle,
 };
 
 const offersSlice = createSlice({
@@ -59,9 +59,10 @@ const offersSlice = createSlice({
 		},
 	},
 	selectors: {
-		getOffers: (state: OffersState) => state.offers,
-		getActiveOfferId: (state: OffersState) => state.activeOfferId,
-		getFavoriteOffers: (state: OffersState) => state.favoriteOffers,
+		offers: (state: OffersState) => state.offers,
+		activeOfferId: (state: OffersState) => state.activeOfferId,
+		favoriteOffers: (state: OffersState) => state.favoriteOffers,
+		offersRequestStatus: (state: OffersState) => state.requestStatus,
 	},
 });
 

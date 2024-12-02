@@ -6,7 +6,7 @@ import { offersSelectors } from "../../store/slices/offersSlice";
 
 function UserAuthorized(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const getFavoriteOffers = offersSelectors.getFavoriteOffers;
+	const getFavoriteOffers = offersSelectors.favoriteOffers;
 	const favoriteOffersCount = useAppSelector(getFavoriteOffers).length;
 
 	const handleSignOutClick = () => {

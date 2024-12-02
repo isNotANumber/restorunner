@@ -7,7 +7,7 @@ import { useAppSelector } from "../../hooks/store";
 import { offersSelectors } from "../../store/slices/offersSlice";
 
 function OfferPage(): JSX.Element {
-	const offers = useAppSelector(offersSelectors.getOffers);
+	const offers = useAppSelector(offersSelectors.offers);
 	const { id } = useParams();
 	const offer: Offer = offers.find((item) => item.id === id) as Offer;
 

@@ -3,8 +3,8 @@ import { categoriesActions, categoriesSelectors } from "../../store/slices/categ
 
 function Categories(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const categories = useAppSelector(categoriesSelectors.getCategories);
-	const currentCategory = useAppSelector(categoriesSelectors.getActiveCategory);
+	const categories = useAppSelector(categoriesSelectors.categories);
+	const currentCategory = useAppSelector(categoriesSelectors.activeCategory);
 
 	const handleOnTabClick = (category: string) => dispatch(categoriesActions.setActiveCategory(category));
 

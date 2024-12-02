@@ -9,8 +9,8 @@ import { offersSelectors } from "../../store/slices/offersSlice";
 import { categoriesSelectors } from "../../store/slices/categoriesSlice";
 
 function MainPage(): JSX.Element {
-	const currentPlaceType = useAppSelector(categoriesSelectors.getActiveCategory);
-	const offers = useAppSelector(offersSelectors.getOffers);
+	const currentPlaceType = useAppSelector(categoriesSelectors.activeCategory);
+	const offers = useAppSelector(offersSelectors.offers);
 	const offersByCategory = useAppSelector((state) => categoriesSelectors.selectOffersByCategory(state, offers));
 
 	return (
