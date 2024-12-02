@@ -5,12 +5,12 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import Categories from "../../components/categories/Categories";
 import { useAppSelector } from "../../hooks/store";
-import { catalogSelectors } from "../../store/slices/catalogSlice";
+import { offersSelectors } from "../../store/slices/offersSlice";
 import { categoriesSelectors } from "../../store/slices/categoriesSlice";
 
 function MainPage(): JSX.Element {
 	const currentPlaceType = useAppSelector(categoriesSelectors.getActiveCategory);
-	const offers = useAppSelector(catalogSelectors.getOffers);
+	const offers = useAppSelector(offersSelectors.getOffers);
 	const offersByCategory = useAppSelector((state) => categoriesSelectors.selectOffersByCategory(state, offers));
 
 	return (

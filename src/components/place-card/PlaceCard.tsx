@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Offer } from "../../types/types";
-import { catalogActions } from "../../store/slices/catalogSlice";
+import { offersActions } from "../../store/slices/offersSlice";
 import { useAppDispatch } from "../../hooks/store";
 import { patchAddToFavorites, patchRemoveFromFavorites } from "../../store/thunks/catalogThunk";
 
@@ -13,7 +13,7 @@ function PlaceCard({ offer, page }: PlaceCardProps): JSX.Element {
 	const dispatch = useAppDispatch();
 
 	const handleCardMouseEnter = (offerId: Offer["id"]) => {
-		return dispatch(catalogActions.setActiveCardId(offerId));
+		return dispatch(offersActions.setActiveOfferId(offerId));
 	};
 
 	const handleBookmarkBtnClick = (offer: Offer) => {

@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { authActions } from "../../store/slices/authSlice";
-import { catalogSelectors } from "../../store/slices/catalogSlice";
+import { offersSelectors } from "../../store/slices/offersSlice";
 
 function UserAuthorized(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const getFavoriteOffers = catalogSelectors.getFavoriteOffers;
+	const getFavoriteOffers = offersSelectors.getFavoriteOffers;
 	const favoriteOffersCount = useAppSelector(getFavoriteOffers).length;
 
 	const handleSignOutClick = () => {

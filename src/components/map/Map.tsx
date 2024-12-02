@@ -5,6 +5,7 @@ import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, CITY } from "../../const";
 import "leaflet/dist/leaflet.css";
 import { useAppSelector } from "../../hooks/store";
 import { Offers } from "../../types/types";
+import { offersSelectors } from "../../store/slices/offersSlice";
 
 type MapProps = {
 	offers: Offers;
@@ -28,7 +29,7 @@ function Map({ offers }: MapProps): JSX.Element {
 	const mapRef = useRef(null);
 	const map = useMap(mapRef, city);
 
-	const activeCardId = useAppSelector((state) => state.catalog.activeCardId);
+	const activeCardId = useAppSelector(offersSelectors.getActiveOfferId);
 
 	useEffect(() => {
 		if (map) {

@@ -8,21 +8,21 @@ import {
 } from "../thunks/catalogThunk";
 import { RequestStatus } from "../../const";
 
-type CatalogState = {
+type OffersState = {
 	offers: Offers;
 	favoriteOffers: Offers;
-	activeCardId: string | undefined;
+	activeOfferId: string | undefined | null;
 	loadingStatus: RequestStatus;
 };
 
-const initialState: CatalogState = {
+const initialState: OffersState = {
 	offers: [],
 	favoriteOffers: [],
-	activeCardId: undefined,
+	activeOfferId: null,
 	loadingStatus: RequestStatus.Idle,
 };
 
-const catalogSlice = createSlice({
+const offersSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchAllOffers.fulfilled, (state, action) => {
@@ -42,7 +42,7 @@ const catalogSlice = createSlice({
 				state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
 			});
 	},
-	name: "catalog",
+	name: "offers",
 	initialState,
 	reducers: {
 		updateOffer: (state, action: PayloadAction<Offer>) => {
@@ -54,17 +54,18 @@ const catalogSlice = createSlice({
 				...state.offers.slice(targetOfferIndex + 1),
 			];
 		},
-		setActiveCardId: (state, action: PayloadAction<Offer["id"] | undefined>) => {
-			state.activeCardId = action.payload;
+		setActiveOfferId: (state, action: PayloadAction<Offer["id"] | undefined>) => {
+			state.activeOfferId = action.payload;
 		},
 	},
 	selectors: {
-		getOffers: (state: CatalogState) => state.offers,
-		getFavoriteOffers: (state: CatalogState) => state.favoriteOffers,
+		getOffers: (state: OffersState) => state.offers,
+		getActiveOfferId: (state: OffersState) => state.activeOfferId,
+		getFavoriteOffers: (state: OffersState) => state.favoriteOffers,
 	},
 });
 
-const catalogActions = catalogSlice.actions;
-const catalogSelectors = catalogSlice.selectors;
+const offersActions = offersSlice.actions;
+const offersSelectors = offersSlice.selectors;
 
-export { catalogActions, catalogSelectors, catalogSlice };
+export { offersActions, offersSelectors, offersSlice };

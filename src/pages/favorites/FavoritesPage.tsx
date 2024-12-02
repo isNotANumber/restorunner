@@ -4,12 +4,12 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import { useAppSelector } from "../../hooks/store";
 import Footer from "../../components/footer/Footer";
-import { catalogSelectors } from "../../store/slices/catalogSlice";
+import { offersSelectors } from "../../store/slices/offersSlice";
 import { categoriesSelectors } from "../../store/slices/categoriesSlice";
 
 function FavoritesPage(): JSX.Element {
 	const categories = useAppSelector(categoriesSelectors.getCategories);
-	const favoriteOffers = useAppSelector(catalogSelectors.getFavoriteOffers);
+	const favoriteOffers = useAppSelector(offersSelectors.getFavoriteOffers);
 
 	return (
 		<div className="page">
