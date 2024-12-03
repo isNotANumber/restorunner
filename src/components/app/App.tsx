@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AppRoute } from "../../const";
 import MainPage from "../../pages/main/MainPage";
@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { fetchAllOffers, fetchCategories } from "../../store/thunks/catalogThunk";
 import { getToken } from "../../services/token";
 import { checkAuth } from "../../store/thunks/authThunk";
+import HistoryRouter from "../history-route/HistoryRoute";
+import browserHistory from "../../browser-history";
 
 function App() {
 	const dispatch = store.dispatch;
@@ -30,11 +32,7 @@ function App() {
 
 	return (
 		<HelmetProvider>
-			<BrowserRouter
-				future={{
-					v7_relativeSplatPath: true,
-				}}
-			>
+			<HistoryRouter history={browserHistory}>
 				<Routes>
 					<Route path={AppRoute.Root} element={<MainPage></MainPage>}></Route>
 					<Route
@@ -56,7 +54,7 @@ function App() {
 					<Route path={AppRoute.Offer} element={<OfferPage></OfferPage>}></Route>
 					<Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
 				</Routes>
-			</BrowserRouter>
+			</HistoryRouter>
 		</HelmetProvider>
 	);
 }
