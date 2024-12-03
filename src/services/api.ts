@@ -30,7 +30,7 @@ export const createAPI = (): AxiosInstance => {
 	api.interceptors.request.use((config) => {
 		const token = getToken();
 		if (token && config.headers) {
-			config.headers["X-token"] = token;
+			config.headers["Authorization"] = `Bearer: ${token}`;
 		}
 
 		return config;
