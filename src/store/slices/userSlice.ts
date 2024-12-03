@@ -11,7 +11,7 @@ type UserState = {
 
 const initialState: UserState = {
 	info: null,
-	status: AuthorizstionStatus.NoAuth,
+	status: AuthorizstionStatus.Unknown,
 	requestStatus: RequestStatus.Idle,
 };
 

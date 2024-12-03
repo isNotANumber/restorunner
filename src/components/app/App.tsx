@@ -10,6 +10,8 @@ import PrivateRoute from "../private-route/PrivateRoute";
 import { store } from "../../store";
 import { useEffect } from "react";
 import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "../../store/thunks/catalogThunk";
+import { getToken } from "../../services/token";
+import { checkAuth } from "../../store/thunks/authThunk";
 
 function App() {
 	const dispatch = store.dispatch;
@@ -20,6 +22,13 @@ function App() {
 		dispatch(fetchFavoriteOffers());
 	});
 
+	const token = getToken();
+	useEffect(() => {
+		if (token) {
+			checkAuth();
+		}
+	}, [token, checkAuth]);
+
 	return (
 		<HelmetProvider>
 			<BrowserRouter
@@ -29,7 +38,14 @@ function App() {
 			>
 				<Routes>
 					<Route path={AppRoute.Root} element={<MainPage></MainPage>}></Route>
-					<Route path={AppRoute.Login} element={<LoginPage></LoginPage>}></Route>
+					<Route
+						path={AppRoute.Login}
+						element={
+							<PrivateRoute onlyUnAuth>
+								<LoginPage></LoginPage>
+							</PrivateRoute>
+						}
+					></Route>
 					<Route
 						path={AppRoute.Favorites}
 						element={

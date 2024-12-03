@@ -1,16 +1,39 @@
-import { Navigate } from "react-router-dom";
+import type { ReactNode } from "react";
+import type { Location } from "react-router-dom";
+
+import { Navigate, useLocation } from "react-router-dom";
+
 import { AppRoute, AuthorizstionStatus } from "../../const";
 import { useAppSelector } from "../../hooks/store";
 import { userSelectors } from "../../store/slices/userSlice";
 
 type PrivateRouteProps = {
-	children: JSX.Element;
+	children: ReactNode;
+	onlyUnAuth?: boolean;
 };
 
-function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
-	const authorizationStatus = useAppSelector(userSelectors.userStatus);
+type FromState = {
+	from?: Location;
+};
 
-	return authorizationStatus === AuthorizstionStatus.Auth ? children : <Navigate to={AppRoute.Login}></Navigate>;
+export default function PrivateRoute({ children, onlyUnAuth }: PrivateRouteProps) {
+	const location: Location<FromState> = useLocation() as Location<FromState>;
+
+	const user = useAppSelector(userSelectors.user);
+	const userCheckAuth = useAppSelector(userSelectors.userStatus);
+
+	if (userCheckAuth === AuthorizstionStatus.Unknown) {
+		return <div>*Loader placeholder*</div>;
+	}
+
+	if (onlyUnAuth && user) {
+		const from = location.state?.from || { pathname: AppRoute.Root };
+		return <Navigate to={from} />;
+	}
+
+	if (!onlyUnAuth && !user) {
+		return <Navigate state={{ from: location }} to={AppRoute.Login}></Navigate>;
+	}
+
+	return children;
 }
-
-export default PrivateRoute;
