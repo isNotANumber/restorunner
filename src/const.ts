@@ -23,8 +23,8 @@ export const CITY = {
 };
 
 export enum Endpoint {
-	Login = "/login",
-	Logout = "/logout",
+	Login = "/user/login",
+	Logout = "/user/logout",
 	Offers = "/offers",
 	Favorites = "/offers/favorites",
 	Categories = "/categories",

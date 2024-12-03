@@ -9,7 +9,7 @@ import NotFoundPage from "../../pages/not-found/NotFoundPage";
 import PrivateRoute from "../private-route/PrivateRoute";
 import { store } from "../../store";
 import { useEffect } from "react";
-import { fetchAllOffers, fetchCategories, fetchFavoriteOffers } from "../../store/thunks/catalogThunk";
+import { fetchAllOffers, fetchCategories } from "../../store/thunks/catalogThunk";
 import { getToken } from "../../services/token";
 import { checkAuth } from "../../store/thunks/authThunk";
 
@@ -19,13 +19,12 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchCategories());
 		dispatch(fetchAllOffers());
-		dispatch(fetchFavoriteOffers());
 	});
 
 	const token = getToken();
 	useEffect(() => {
 		if (token) {
-			checkAuth();
+			dispatch(checkAuth());
 		}
 	}, [token, checkAuth]);
 

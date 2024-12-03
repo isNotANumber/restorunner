@@ -47,7 +47,7 @@ const userSlice = createSlice({
 				state.status = AuthorizstionStatus.NoAuth;
 			});
 	},
-	name: "auth",
+	name: "user",
 	initialState,
 	reducers: {
 		setUserStatus: (state, action: PayloadAction<AuthorizstionStatus>) => {
