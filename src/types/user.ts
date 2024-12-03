@@ -3,4 +3,10 @@ export type User = {
 	avatarPath: string;
 	firstname: string;
 	lastname: string;
+	token: string;
+};
+
+export type LoginUserData = {
+	email: string;
+	password: string;
 };
