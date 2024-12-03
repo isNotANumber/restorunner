@@ -20,11 +20,6 @@ export default function PrivateRoute({ children, onlyUnAuth }: PrivateRouteProps
 	const location: Location<FromState> = useLocation() as Location<FromState>;
 
 	const user = useAppSelector(userSelectors.user);
-	// const userCheckAuth = useAppSelector(userSelectors.userStatus);
-
-	// if (userCheckAuth === AuthorizstionStatus.Unknown) {
-	// 	return <div>*Loader placeholder*</div>;
-	// }
 
 	if (onlyUnAuth && user) {
 		const from = location.state?.from || { pathname: AppRoute.Root };
